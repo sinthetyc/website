@@ -1,0 +1,286 @@
+/* start: reset */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+body {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    line-height:1.5;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+mark {
+    background-color:#ff9;
+    color:#000; 
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+hr {
+    display:block;
+    height:1px;
+    border:0;   
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+/* end: reset */
+
+
+
+/* start: Grid */
+.grid1 { width:2.33% } /**/
+.grid2 { width:10.65% } /**/
+.grid3 { width:19% } /**/
+.grid4 { width:27.33% } /**/
+/*.grid5 { width:40.50% }*/
+.grid6 { width:44% } /**/
+/*.grid7 { width:57.50% }*/
+.grid8 { width:60.6% } /**/
+.grid9 { width:69% } /**/
+.grid10 { width:77.33% } /**/
+.grid11 { width:65.63% } /**/
+.grid12 { width:94% } /**/
+.fullGrid { width:100% } /**/
+
+.col {
+	margin:0 2%;
+	padding:0 1%;
+}
+
+.col img {
+	width: 100%;
+}
+
+/* end: Grid */
+
+.tiny {font-size:0.5em}
+.small {font-size:0.75em}
+.large {font-size:1.25em}
+.huge {font-size:1.5em}
+.massive {font-size:2em}
+
+.left{float:left;}
+.right{float:right;}
+.clear{clear:both;}
+
+body {background:url(../images/pattern.png) #333;/*#583722;*/}
+
+.page {
+	width:100%; height:100%;
+	overflow:scroll-y;
+	/*background:#333;*/
+	position:relative;
+	top:100px;
+	padding:40px 0px 80px;
+	color:#f9f9f9;
+}
+
+#nextpage {
+	display:none;
+}
+
+#container {
+	float:left;
+	margin:0 auto;
+	width:100%;
+}
+
+
+
+
+#pageHeader {
+	background:#f9f9f9;
+	position:fixed;
+	top:0;
+	left:0;
+	height:100px;
+	box-shadow:0 0 10px #222;
+}
+#pageHeader img { margin:10px 10px 10px 3% }
+#pageHeader ul {float:left;}
+nav li {float:left;}
+nav a {
+	float:left;
+	text-decoration:none;
+	padding: 38px 40px;
+	color: #222222;
+	background: #f9f9f9;
+	border-color:#444;
+	text-transform:uppercase;
+}
+nav a:hover, .hover{
+	background:#ffffff;
+	border-width:0 0 10px 0;
+	border-style:solid;
+	padding:38px 40px 28px;
+}
+nav a.current{
+}
+
+.subnav{
+	display:block;
+	position:absolute;
+	top:100px;
+	left:0;
+	background:#444;
+	float:left;
+	width:100%;
+	border:solid #222;
+	border-width: 0 0 1px;
+}
+
+.subnav a {
+	padding:20px 40px;
+	color:#f9f9f9;
+	background:none;
+}
+.subnav a:hover {
+	background:#555;
+	border-style:none;
+	padding:20px 40px;
+}
+
+.subnav li {
+	position:relative;
+}
+
+
+
+
+#pageFooter{
+	background: #222;
+	color:#ccc;
+	height:50px;
+	position:fixed;
+	bottom:0px;
+	border:1px solid #111;
+	border-width:1px 0 0;
+	box-shadow:0 0 10px #222;
+}
+#pageFooter span { margin: 1.5em 0; }
+
+
+h1 {
+	font-size: 3em;
+	font-weight: normal;
+	margin-bottom: 0.25em;
+}
+
+h2 {
+	font-size: 1.5em;
+	font-weight: normal;
+	margin-bottom: 1em;
+}
+p {
+	margin-bottom:1.5em;
+}
+
+h1 + p {
+	margin-bottom: 3em;
+}
+
+
+button {
+	background: #444444;
+	color:#f9f9f9;
+	border: 0 none;
+	padding: 16px 20px;
+	text-transform: uppercase;
+	cursor: pointer;
+	box-shadow:0 0 5px #333;
+}
+
+button:hover {
+	background: #555555;
+	box-shadow:0 0 10px #333;
+}
+
+.col img {
+	display:block;
+	margin-bottom: 1em;
+	box-shadow:0 0 10px #222;
+}
+
+.col a img {
+	opacity:0.7;
+}
+
+.col a:hover img {
+	opacity:1;
+}
+
+
+canvas {
+position:absolute;
+left:0;
+top:0;
+z-index:-10;
+}
