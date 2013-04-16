@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 	<?php
+		//testing github :)
+		
 		$dir = $_SERVER['DOCUMENT_ROOT'];
 		$page_title = "Home | Pixel Monkey";
 		//$add_css = array();
