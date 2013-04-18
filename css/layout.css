@@ -134,11 +134,8 @@ input, select {
 body {background:url(../images/pattern.png) #333;/*#583722;*/}
 
 .page {
-	width:100%; height:100%;
-	overflow:scroll-y;
+	width:100%; height:auto;
 	/*background:#333;*/
-	position:relative;
-	top:100px;
 	padding:40px 0px 80px;
 	color:#f9f9f9;
 }
@@ -158,7 +155,7 @@ body {background:url(../images/pattern.png) #333;/*#583722;*/}
 
 #pageHeader {
 	background:#f9f9f9;
-	position:fixed;
+	position:relative;
 	top:0;
 	left:0;
 	height:100px;
@@ -198,14 +195,14 @@ nav a.current{
 }
 
 .subnav a {
-	padding:20px 40px;
+	padding:15px 30px;
 	color:#f9f9f9;
 	background:none;
 }
 .subnav a:hover {
 	background:#555;
 	border-style:none;
-	padding:20px 40px;
+	padding:15px 30px;
 }
 
 .subnav li {
@@ -304,4 +301,36 @@ button:hover {
 	opacity: 0;
 	margin: 30px;
 	box-shadow: 0 0 10px #aaa;
+}
+
+
+@media only screen and (max-width: 580px) {
+	nav {
+		width: 580px;
+	}
+	nav a {
+		width: 540px;
+		padding: 10px 20px;
+	}
+	nav a:hover{
+		padding: 10px 20px;
+		border: none;
+		background: #ddd;
+	}
+	.subnav {
+		position:relative;
+		top:0; left:0;
+		display:block;
+	}
+	nav li {
+		width:580px;
+	}
+	#pageHeader {
+		height:auto;
+	}
+	#pageHeader ul{
+		width: 580px;
+	}
+	
+	.grid8 { width: 100% }
 }

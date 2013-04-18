@@ -10,6 +10,7 @@
 		require $dir . './inc/head.php';
 	?>
 	<body>
+		<?php require $dir . '/inc/header.php'; ?>
 		<div id="container">
 		
 		<div id="page" class="page left">
@@ -36,7 +37,7 @@
 				<button data:href="/photography/">See more</button>
 			</div>
 		</div>
-		<?php require $dir . '/inc/header.php'; ?>
+		
 		<?php require $dir . '/inc/footer.php'; ?>
 		</div>
 	</body>

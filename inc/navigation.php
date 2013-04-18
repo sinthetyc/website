@@ -2,9 +2,9 @@
 echo '
 				<nav class="left">
 					<ul>
-						<li>
+						<!-- li>
 							<a href="/" class="current">Home</a>
-						</li>
+						</li -->
 						<li>
 							<a href="/web/">Web</a>
 							<ul class="subnav">
