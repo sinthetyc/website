@@ -114,6 +114,8 @@ function getPage(url, direction){
 				transition = false;
 			});
 		});
+	}).fail( function(){
+		transition = false;
 	});
 }
 
