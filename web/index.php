@@ -12,20 +12,20 @@
 		
 		<div id="page" class="page left">
 			<div class="col grid8 left">
-				<h1>Web Design</h1>
-				<p>Web design, front-end development, print design and photography.  Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
+				<h1>Web Design &amp; Development</h1>
+				<p>Web design and development.  HTML5/CSS3. Standards compliant. Cross browser.</p>
 			</div>
-			<div id="test" class="col grid6 left clear">
+			<div class="col grid6 left clear">
 				<h2>Web Design</h2>
 				<a href="/web/"><img src="../images/web-design.jpg"></a>
-				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/web/">See more</button>
+				<p>Photoshop / Illustrator -> HTML/CSS.  Templates.</p>
+				<button data:href="/web/design/">See more</button>
 			</div>
-			<div id="test" class="col grid6 left">
-				<h2>Print Design</h2>
-				<a href="/print/"><img src="../images/print-design.jpg"></a>
-				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/print/">See more</button>
+			<div class="col grid6 left">
+				<h2>Laboratory</h2>
+				<a href="/web/laboratory/"><img src="../images/web-design.jpg"></a>
+				<p>Experiments with emerging technologies. HTML5 Canvas element animation and interface design.</p>
+				<button data:href="/web/laboratory/">See more</button>
 			</div>
 		</div>
 		<?php require $dir . '/inc/header.php'; ?>
