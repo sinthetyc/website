@@ -1,4 +1,5 @@
 var crumbs = [],
+	transition = false,
 	fxFast = 100,
 	fxMedium = 200,
 	fxSlow = 300;
@@ -46,10 +47,55 @@ $(document).ready(function(){
 		crumbs.pop();
 	};
 	
+	$('body').on('click', '.lightbox', function(e){
+		e.preventDefault(); e.stopPropagation();
+		
+		if($('#cinemaView').length > 0){
+			$('#cinemaView').remove();
+		}
+		
+		$('#container').append('<div id="cinemaView"><div id="lightbox"><img id="slide"/></div></div>');
+		
+		$('#lightbox').center();
+		$('#slide').attr('src', e.currentTarget.href).load(function(e){
+			var width = e.target.naturalWidth + 60,
+				height = e.target.naturalHeight + 60,
+				left = (window.innerWidth / 2) - (width / 2),
+				top = (window.innerHeight / 2) - (height / 2);
+			$('#lightbox').animate({
+				'left': left,
+				'top': top,
+				'width': width,
+				'height': height
+			}, fxSlow, function(e){
+				$('#slide').animate({'opacity': 1}, fxSlow);
+			});
+		});
+		
+		return false;
+	});
+	
+	$('body').on('click', '#cinemaView', function(e){
+		if(e.target.id === "lightbox") return false;
+		$('#cinemaView').fadeOut(fxSlow, function(){
+			$(this).remove();
+		});
+	});
+	
+	window.onresize = function(e){
+		$('#lightbox').center();
+	};
+	
+	
 });
 
 
 function getPage(url, direction){
+	
+	if(transition) return false;
+	
+	transition = true;
+	
 	var hide = direction ? 'right' : 'left',
 		show = direction ? 'left' : 'right';
 	
@@ -65,7 +111,20 @@ function getPage(url, direction){
 			$('#nextpage').show("slide", {direction: show}, fxSlow, function(){
 				$('#page').remove();
 				$('#nextpage').attr('id', 'page');
+				transition = false;
 			});
 		});
 	});
 }
+
+
+(function ($) {
+	$.fn.center = function () {
+		this.css({
+			position: 'absolute',
+			top: (($(window).height() - this.height()) / 2) + $(window).scrollTop()-10,
+			left: (($(window).width() - this.width()) / 2)
+		});
+		return this;
+	};
+})( jQuery );
