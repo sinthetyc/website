@@ -36,9 +36,9 @@ echo '
 								<li>
 									<a href="/photography/wildlife/">Wildlife</a>
 								</li>
-								<li>
+								<!-- li>
 									<a href="/photography/wildlife/">Miscellaneous</a>
-								</li>
+								</li -->
 							</ul>
 						</li>
 					</ul>
