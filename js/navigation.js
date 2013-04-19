@@ -6,6 +6,7 @@ var crumbs = [],
 
 $(document).ready(function(){
 	if(window.innerWidth > 820){
+		//test sourcetree
 		//$('.subnav').css({display:'none'});
 		//$('nav > ul > li').hover(function(){ $(this).children('.subnav').stop().show('slide', {direction:'left'}, 300); }, function(){$(this).children('.subnav').stop().hide('slide',{direction:'left'},300); });	
 	}
