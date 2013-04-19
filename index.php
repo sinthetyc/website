@@ -2,7 +2,6 @@
 <html lang="en">
 	<?php
 		//testing github :)
-		
 		$dir = $_SERVER['DOCUMENT_ROOT'];
 		$page_title = "Home | Pixel Monkey";
 		//$add_css = array();
@@ -10,8 +9,8 @@
 		require $dir . './inc/head.php';
 	?>
 	<body>
-		<?php require $dir . '/inc/header.php'; ?>
 		<div id="container">
+		<?php require $dir . '/inc/header.php'; ?>
 		
 		<div id="page" class="page left">
 			<div class="col grid8 left">
@@ -22,19 +21,19 @@
 				<h2>Web Design</h2>
 				<a href="/web/"><img src="../images/web-design.jpg"></a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/web/">See more</button>
+				<button data:href="/web/">See more &gt;&gt;</button>
 			</div>
 			<div class="col grid4 left">
 				<h2>Print Design</h2>
 				<a href="/print/"><img src="../images/print-design.jpg"></a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/print/">See more</button>
+				<button data:href="/print/">See more &gt;&gt;</button>
 			</div>
 			<div class="col grid4 left">
 				<h2>Photography</h2>
 				<a href="/photography/"><img src="../images/photography.jpg"></a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/photography/">See more</button>
+				<button data:href="/photography/">See more &gt;&gt;</button>
 			</div>
 		</div>
 		

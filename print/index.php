@@ -9,6 +9,7 @@
 	?>
 	<body>
 		<div id="container">
+		<?php require $dir . '/inc/header.php'; ?>
 		
 		<div id="page" class="page left">
 			<div class="col grid8 left">
@@ -19,16 +20,15 @@
 				<h2>Corporate ID</h2>
 				<a href="/print/corporate-id/"><img src="../images/web-design.jpg"></a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/print/corporate-id/">See more</button>
+				<button data:href="/print/corporate-id/">See more &gt;&gt;</button>
 			</div>
 			<div class="col grid6 left">
 				<h2>T-Shirt Design</h2>
 				<a href="/print/t-shirt/"><img src="../images/print-design.jpg"></a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/print/t-shirt/">See more</button>
+				<button data:href="/print/t-shirt/">See more &gt;&gt;</button>
 			</div>
 		</div>
-		<?php require $dir . '/inc/header.php'; ?>
 		<?php require $dir . '/inc/footer.php'; ?>
 		</div>
 	</body>

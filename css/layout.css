@@ -215,8 +215,7 @@ nav a.current{
 #pageFooter{
 	background: #222;
 	color:#ccc;
-	height:50px;
-	position:fixed;
+	height:auto;
 	bottom:0px;
 	border:1px solid #111;
 	border-width:1px 0 0;
@@ -244,6 +243,20 @@ h1 + p {
 	margin-bottom: 3em;
 }
 
+a {
+	color:#888888;
+	text-decoration:none;
+	outline:0 none;
+}
+
+a:hover {
+	color:#ffffff;
+}
+
+.copyright {
+	color: #888888;
+}
+
 
 button {
 	background: #444444;
@@ -253,12 +266,17 @@ button {
 	text-transform: uppercase;
 	cursor: pointer;
 	box-shadow:0 0 5px #333;
+	margin: 0 0 40px;
+	width:100%;
+	text-align:right;
 }
 
 button:hover {
 	background: #555555;
 	box-shadow:0 0 10px #333;
 }
+
+
 
 .col img {
 	display:block;
@@ -286,51 +304,79 @@ button:hover {
 }
 
 #lightbox {
-	width: 320px;
-	height: 200px;
+	width: 90%;
+	height: 50%;
 	background: #f9f9f9;
 	box-shadow: 0 0 20px #181818;
-	border-radius: 3px;
 	border: 1px solid #222;
 	position: absolute;
 	left: 0;
 	top: 0;
 }
 
-#lightbox img {
+#slide {
 	opacity: 0;
-	margin: 30px;
-	box-shadow: 0 0 10px #aaa;
+	width:800px;
+	height:auto;
+	display:block;
 }
 
 
-@media only screen and (max-width: 580px) {
+@media only screen and (max-width: 800px) {
 	nav {
-		width: 580px;
+		width: 100%;
 	}
+
+	nav li {
+		width:100%;
+	}
+
 	nav a {
-		width: 540px;
-		padding: 10px 20px;
+		width: 90%;
+		padding: 10px 5%;
 	}
+
 	nav a:hover{
-		padding: 10px 20px;
+		padding: 10px 5%;
 		border: none;
 		background: #ddd;
 	}
+
 	.subnav {
 		position:relative;
 		top:0; left:0;
 		display:block;
 	}
-	nav li {
-		width:580px;
+
+	.subnav a {
+		width: 84%;
+		padding: 10px 8%;
 	}
+	
+	.subnav a:hover {
+		padding: 10px 8%;
+	}
+	
 	#pageHeader {
 		height:auto;
 	}
+
 	#pageHeader ul{
-		width: 580px;
+		width: 100%;
 	}
 	
-	.grid8 { width: 100% }
+	.grid3 { width: 44% }
+	.grid4 { width: 44% }
+	.grid8 { width: 94% }
+	
+	.col a img {
+		opacity:1;
+	}
+	
+}
+
+@media only screen and (max-width: 480px) {
+
+	.grid3, .grid4, .grid8 { width: 94% }
+
 }

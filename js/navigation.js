@@ -5,7 +5,7 @@ var crumbs = [],
 	fxSlow = 300;
 
 $(document).ready(function(){
-	if(window.innerWidth > 579){
+	if(window.innerWidth > 800){
 		$('.subnav').css({'display':'block'});
 		$('.subnav').each(function(){
 			var left = $(this).parent('li').offset().left + $(this).parent('li').width() / 2,
@@ -57,8 +57,8 @@ $(document).ready(function(){
 		
 		$('#lightbox').center();
 		$('#slide').attr('src', e.currentTarget.href).load(function(e){
-			var width = e.target.naturalWidth + 60,
-				height = e.target.naturalHeight + 60,
+			var width = e.target.width,
+				height = e.target.height,
 				left = (window.innerWidth / 2) - (width / 2),
 				top = (window.innerHeight / 2) - (height / 2);
 			$('#lightbox').animate({
@@ -75,7 +75,9 @@ $(document).ready(function(){
 	});
 	
 	$('body').on('click', '#cinemaView', function(e){
-		if(e.target.id === "lightbox") return false;
+		if(e.target.id === "slide"){
+			return false;
+		}
 		$('#cinemaView').fadeOut(fxSlow, function(){
 			$(this).remove();
 		});
@@ -98,7 +100,7 @@ function getPage(url, direction){
 	var hide = direction ? 'right' : 'left',
 		show = direction ? 'left' : 'right';
 	
-	$('#container').prepend('<div id="nextpage" class="page left">');
+	$('#container').append('<div id="nextpage" class="page left">');
 	$.get(url, function(data){
 		var pageData = $(data).find('#page').html(),
 			pageTitle = $(data).find('title').html();

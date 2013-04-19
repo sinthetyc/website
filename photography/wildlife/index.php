@@ -11,6 +11,7 @@
 	?>
 	<body>
 		<div id="container">
+		<?php require $dir . '/inc/header.php'; ?>
 		
 			<div id="page" class="page left">
 				<div class="col grid8 left">
@@ -30,7 +31,6 @@
 	}
 ?>
 			</div>
-		<?php require $dir . '/inc/header.php'; ?>
 		<?php require $dir . '/inc/footer.php'; ?>
 		</div>
 	</body>
