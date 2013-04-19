@@ -6,7 +6,6 @@ var crumbs = [],
 
 $(document).ready(function(){
 	if(window.innerWidth > 820){
-		//test sourcetree
 		//$('.subnav').css({display:'none'});
 		//$('nav > ul > li').hover(function(){ $(this).children('.subnav').stop().show('slide', {direction:'left'}, 300); }, function(){$(this).children('.subnav').stop().hide('slide',{direction:'left'},300); });	
 	}
@@ -31,7 +30,7 @@ $(document).ready(function(){
 			$('#cinemaView').remove();
 		}
 		
-		$('#container').append('<div id="cinemaView"><div id="lightbox"><img id="slide"/></div></div>');
+		$('#container').append('<div id="cinemaView"><div id="lightbox" class="loading"><img id="slide"/></div></div>');
 		
 		$('#lightbox').center();
 		$('#slide').attr('src', e.currentTarget.href).load(function(e){
@@ -45,6 +44,7 @@ $(document).ready(function(){
 				'width': width,
 				'height': height
 			}, fxSlow, function(e){
+				$('#lightbox').removeClass('loading');
 				$('#slide').animate({'opacity': 1}, fxSlow);
 			});
 		});
