@@ -23,7 +23,7 @@
 	if (($handle = fopen("photos.csv", "r")) !== FALSE) {
 		while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 			echo "\t\t\t\t" . '<div class="col grid3 left' . ($first ? ' clear' : '') . '">' . "\n"
-			. "\t\t\t\t\t" . '<a href="' . $data[0] . '" class="lightbox"><img src="' . $data[1] . '" alt="' . $data[2] . '"></a>' . "\n"
+			. "\t\t\t\t\t" . '<a href="' . $data[0] . '" class="lightbox photolink"><img src="' . $data[1] . '" alt="' . $data[2] . '"><span class="seemore zoom">Zoom</span></a>' . "\n"
 			. "\t\t\t\t" . '</div>' . "\n";
 			$first = false;
 		}

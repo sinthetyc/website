@@ -11,18 +11,34 @@ $(document).ready(function(){
 	}
 	
 	
-	/* Buttons */
-	$('body').on('click', 'button', function(e){
+	/* navigate */
+	$('body').on('click', '.photolink', function(e){
+		e.stopPropagation();
+		e.preventDefault();
+		
 		crumbs.push({path:window.location.pathname});
-		var url = $(this).attr('data:href');
+		var url = $(this).attr('href');
+		
 		getPage(url, false);
+		
+		return false;
 	});
-	
+
 	window.onpopstate = function(e){
 		getPage(crumbs[crumbs.length-1].path, true);
 		crumbs.pop();
 	};
+
 	
+	/* seemore */
+	$('body').on('mouseover', '.photolink', function(){
+		$(this).children('.seemore').stop().fadeIn();
+	}).on('mouseout', '.photolink', function(){
+		$(this).children('.seemore').stop().fadeOut();
+	});
+	
+
+	/* lightbox for photos */
 	$('body').on('click', '.lightbox', function(e){
 		e.preventDefault(); e.stopPropagation();
 		
@@ -33,7 +49,7 @@ $(document).ready(function(){
 		$('#container').append('<div id="cinemaView"><div id="lightbox" class="loading"><img id="slide"/></div></div>');
 		
 		$('#lightbox').center();
-		$('#slide').attr('src', e.currentTarget.href).load(function(e){
+		$('#slide').attr('src', e.currentTarget.href).load( function(e){
 			var width = e.target.width,
 				height = e.target.height,
 				left = (window.innerWidth / 2) - (width / 2),
@@ -51,6 +67,8 @@ $(document).ready(function(){
 		
 		return false;
 	});
+	
+/* TODO: Codebox for JS demos */
 	
 	$('body').on('click', '#cinemaView', function(e){
 		if(e.target.id === "slide"){

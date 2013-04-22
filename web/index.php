@@ -17,17 +17,17 @@
 			</div>
 			<div class="col grid6 left clear">
 				<h2>Web Design</h2>
-				<a href="/web/">
+				<a class="photolink" href="/web/">
 					<img src="/images/web-design.jpg">
-					<button data:href="/web/design/">See more &gt;&gt;</button>
+					<span class="seemore next">See more</span>
 				</a>
 				<p>Photoshop / Illustrator -> HTML/CSS.  Templates.</p>
 			</div>
 			<div class="col grid6 left">
 				<h2>Laboratory</h2>
-				<a href="/web/laboratory/">
+				<a class="photolink" href="/web/laboratory/">
 					<img src="/images/web-laboratory.jpg">
-					<button data:href="/web/laboratory/">See more &gt;&gt;</button>
+					<span class="seemore next">See more</span>
 				</a>
 				<p>Experiments with emerging technologies. HTML5 Canvas element animation and interface design.</p>
 			</div>

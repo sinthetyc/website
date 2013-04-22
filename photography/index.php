@@ -18,21 +18,27 @@
 			</div>
 			<div class="col grid4 left clear">
 				<h2>Landscape</h2>
-				<a href="/photography/landscape/"><img src="../images/photography-landscape.jpg"></a>
+				<a class="photolink" href="/photography/landscape/">
+					<img src="../images/photography-landscape.jpg">
+					<span class="seemore next">See more</span>
+				</a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/photography/landscape/">See more &gt;&gt;</button>
 			</div>
 			<div class="col grid4 left">
 				<h2>Wildlife</h2>
-				<a href="/photography/wildlife/"><img src="../images/photography-wildlife.jpg"></a>
+				<a class="photolink" href="/photography/wildlife/">
+					<img src="../images/photography-wildlife.jpg">
+					<span class="seemore next">See more</span>
+				</a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/photography/wildlife/">See more &gt;&gt;</button>
 			</div>
 			<div class="col grid4 left">
 				<h2>Miscellaneous</h2>
-				<a href="/photography/misc/"><img src="../images/photography-misc.jpg"></a>
+				<a class="photolink" href="/photography/misc/">
+					<img src="../images/photography-misc.jpg">
+					<span class="seemore next">See more</span>
+				</a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/photogrpahy/misc/">See more &gt;&gt;</button>
 			</div>
 		</div>
 		<?php require $dir . '/inc/footer.php'; ?>

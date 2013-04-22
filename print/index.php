@@ -18,15 +18,19 @@
 			</div>
 			<div class="col grid6 left clear">
 				<h2>Corporate ID</h2>
-				<a href="/print/corporate-id/"><img src="../images/web-design.jpg"></a>
+				<a class="photolink" href="/print/corporate-id/">
+					<img src="../images/web-design.jpg">
+					<span class="seemore next">See more</span>
+				</a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/print/corporate-id/">See more &gt;&gt;</button>
 			</div>
 			<div class="col grid6 left">
 				<h2>T-Shirt Design</h2>
-				<a href="/print/t-shirt/"><img src="../images/print-design.jpg"></a>
+				<a class="photolink" href="/print/t-shirt/">
+					<img src="../images/print-design.jpg">
+					<span class="seemore next">See more</span>
+				</a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/print/t-shirt/">See more &gt;&gt;</button>
 			</div>
 		</div>
 		<?php require $dir . '/inc/footer.php'; ?>

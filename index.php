@@ -19,21 +19,27 @@
 			</div>
 			<div class="col grid4 left clear">
 				<h2>Web Design</h2>
-				<a href="/web/"><img src="../images/web-design.jpg"></a>
+				<a class="photolink" href="/web/">
+					<img src="../images/web-design.jpg">
+					<span class="seemore next">See more</span>
+				</a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/web/">See more &gt;&gt;</button>
 			</div>
 			<div class="col grid4 left">
 				<h2>Print Design</h2>
-				<a href="/print/"><img src="../images/print-design.jpg"></a>
+				<a class="photolink" href="/print/">
+					<img src="../images/print-design.jpg">
+					<span class="seemore next">See more</span>
+				</a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/print/">See more &gt;&gt;</button>
 			</div>
 			<div class="col grid4 left">
 				<h2>Photography</h2>
-				<a href="/photography/"><img src="../images/photography.jpg"></a>
+				<a class="photolink" href="/photography/">
+					<img src="../images/photography.jpg">
+					<span class="seemore next">See more</span>
+				</a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-				<button data:href="/photography/">See more &gt;&gt;</button>
 			</div>
 		</div>
 		
