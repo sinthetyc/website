@@ -17,9 +17,8 @@ $(document).ready(function(){
 		e.preventDefault();
 		
 		crumbs.push({path:window.location.pathname});
-		var url = $(this).attr('href');
 		
-		getPage(url, false);
+		getPage($(this).attr('href'), false);
 		
 		return false;
 	});
@@ -31,9 +30,9 @@ $(document).ready(function(){
 
 	
 	/* seemore */
-	$('body').on('mouseover', '.photolink', function(){
+	$('body').on('mouseenter', '.photolink', function(){
 		$(this).children('.seemore').stop().fadeIn();
-	}).on('mouseout', '.photolink', function(){
+	}).on('mouseleave', '.photolink', function(){
 		$(this).children('.seemore').stop().fadeOut();
 	});
 	
