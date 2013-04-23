@@ -6,8 +6,8 @@ var crumbs = [],
 
 $(document).ready(function(){
 	if(window.innerWidth > 820){
-		//$('.subnav').css({display:'none'});
-		//$('nav > ul > li').hover(function(){ $(this).children('.subnav').stop().show('slide', {direction:'left'}, 300); }, function(){$(this).children('.subnav').stop().hide('slide',{direction:'left'},300); });	
+		$('.subnav').css({display:'none'});
+		$('nav > ul > li').hover(function(){ $(this).children('.subnav').stop().show('slide', {direction:'left'}, 300); }, function(){$(this).children('.subnav').stop().hide('slide',{direction:'left'},300); });	
 	}
 	
 	
@@ -51,26 +51,31 @@ $(document).ready(function(){
 			w = e.target.width;
 			
 		if(x > w/2){
-			//next
-			var el = $('.current').parent('.col').next('.col').children('.lightbox');
-			el = el.length > 0 ? el[0] : $('.lightbox')[0];
-			if(el)
-				loadSlide(el);
+			loadSlide("next");
 		} else {
-			//previous
-			var el = $('.current').parent('.col').prev('.col').children('.lightbox');
-			el = el.length > 0 ? el[0] : $('.lightbox')[$('.lightbox').length-1];
-			if(el)
-				loadSlide(el);
+			loadSlide("prev");
 		}
 	}).on('click', '#cinemaView', function(e){
 		if(e.target.id === "slide"){
 			return false;
 		}
-		$('#cinemaView').fadeOut(fxSlow, function(){
-			$('.current').removeClass('current');
-			$(this).remove();
-		});
+		closeCinemaView();
+	}).on('keyup', function(e){
+		if($('#cinemaView').length > 0){
+			switch(e.which){
+				case 37:
+					loadSlide("prev");
+					break;
+				case 39:
+					loadSlide("next");
+					break
+				case 27:
+					closeCinemaView();
+					break;
+				default:
+					console.log(e.which);
+			}
+		}
 	});
 
 	
@@ -114,12 +119,27 @@ function getPage(url, direction){
 }
 
 function loadSlide(target){
+	var el;
+	
+	switch(target){
+		case "next":
+			el = $('.current').parent('.col').next('.col').children('.lightbox');
+			el = el.length > 0 ? el[0] : $('.lightbox')[0];
+		break;
+		case "prev":
+			el = $('.current').parent('.col').prev('.col').children('.lightbox');
+			el = el.length > 0 ? el[0] : $('.lightbox')[$('.lightbox').length-1];
+		break;
+		default:
+			el = target;
+	}
 
 	$('.current').removeClass('current');
 	
-	$(target).addClass('current');
+	$(el).addClass('current');
 	
 	if($('#cinemaView').length < 1){
+		//<span class="seemore prev left">Prev</span><span class="seemore next right">Next</span>
 		$('#container').append('<div id="cinemaView"><div id="lightbox"><img id="slide"/></div></div>');
 	}
 	
@@ -129,7 +149,7 @@ function loadSlide(target){
 	
 		$('#lightbox').addClass('loading');
 		
-		$(this).attr('src', target.href).load( function(e){
+		$(this).attr('src', el.href).load( function(e){
 			var width = e.target.width,
 				height = e.target.height,
 				left = (window.innerWidth / 2) - (width / 2),
@@ -148,6 +168,12 @@ function loadSlide(target){
 	});
 }
 
+function closeCinemaView(){
+	$('#cinemaView').fadeOut(fxSlow, function(){
+		$('.current').removeClass('current');
+		$(this).remove();
+	});
+}
 
 (function ($) {
 	$.fn.center = function(){
