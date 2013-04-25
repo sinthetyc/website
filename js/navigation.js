@@ -17,22 +17,24 @@ $(document).ready(function(){
 		e.preventDefault();
 		
 		crumbs.push({path:window.location.pathname});
-		
 		getPage($(this).attr('href'), false);
 		
 		return false;
 	});
 
 	window.onpopstate = function(e){
+		if(typeof crumbs[crumbs.length-1] === 'undefined'){
+			history.back();
+		}
 		getPage(crumbs[crumbs.length-1].path, true);
 		crumbs.pop();
 	};
 
 	
 	/* seemore */
-	$('body').on('mouseenter', '.photolink', function(){
+	$('body').on('mouseenter', '.photolink, .lightbox', function(){
 		$(this).children('.seemore').stop().fadeIn();
-	}).on('mouseleave', '.photolink', function(){
+	}).on('mouseleave', '.photolink, .lightbox', function(){
 		$(this).children('.seemore').stop().fadeOut();
 	});
 	
@@ -91,7 +93,7 @@ $(document).ready(function(){
 
 function getPage(url, direction){
 	
-	if(transition) return false;
+	if(transition || url === 'undefined') return false;
 	
 	transition = true;
 	
@@ -119,7 +121,7 @@ function getPage(url, direction){
 }
 
 function loadSlide(target){
-	var el;
+	var el = {};
 	
 	switch(target){
 		case "next":
@@ -139,33 +141,32 @@ function loadSlide(target){
 	$(el).addClass('current');
 	
 	if($('#cinemaView').length < 1){
-		//<span class="seemore prev left">Prev</span><span class="seemore next right">Next</span>
 		$('#container').append('<div id="cinemaView"><div id="lightbox"><img id="slide"/></div></div>');
 	}
 	
 	$('#lightbox').center();
 	
 	$('#slide').animate({'opacity': 0}, fxFast, function(){
-	
+		
 		$('#lightbox').addClass('loading');
+		$(this).attr('src', el.href);
 		
-		$(this).attr('src', el.href).load( function(e){
-			var width = e.target.width,
-				height = e.target.height,
-				left = (window.innerWidth / 2) - (width / 2),
-				top = (window.innerHeight / 2) - (height / 2);
-			$('#lightbox').animate({
-				'left': left,
-				'top': top,
-				'width': width,
-				'height': height
-			}, fxSlow, function(){
-				$('#lightbox').removeClass('loading');
-				$('#slide').animate({'opacity': 1}, fxSlow);
-			});
+	}).on('load', function(e){
+		var width = e.target.width,
+			height = e.target.height,
+			left = (window.innerWidth / 2) - (width / 2),
+			top = (window.innerHeight / 2) - (height / 2);
+		$('#lightbox').animate({
+			'left': left,
+			'top': top,
+			'width': width,
+			'height': height
+		}, fxSlow, function(){
+			$('#lightbox').removeClass('loading');
+			$('#slide').animate({'opacity': 1}, fxSlow);
 		});
-		
 	});
+	
 }
 
 function closeCinemaView(){
@@ -179,7 +180,7 @@ function closeCinemaView(){
 	$.fn.center = function(){
 		this.css({
 			position: 'absolute',
-			top: (($(window).height() - this.height()) / 2) + $(window).scrollTop()-10,
+			top: (($(window).height() - this.height()) / 2) + $(window).scrollTop(),
 			left: (($(window).width() - this.width()) / 2)
 		});
 		return this;

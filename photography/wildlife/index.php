@@ -16,14 +16,14 @@
 			<div id="page" class="page left">
 				<div class="col grid8 left">
 					<h1>Wildlife</h1>
-					<p>All creatures gread and small.</p>
+					<p>All creatures great and small.</p>
 				</div>
 <?php
 	$first = true;
 	if (($handle = fopen("photos.csv", "r")) !== FALSE) {
 		while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 			echo "\t\t\t\t" . '<div class="col grid3 left' . ($first ? ' clear' : '') . '">' . "\n"
-			. "\t\t\t\t\t" . '<a href="' . $data[0] . '" class="lightbox photolink"><img src="' . $data[1] . '" alt="' . $data[2] . '"><span class="seemore zoom">Zoom</span></a>' . "\n"
+			. "\t\t\t\t\t" . '<a href="' . $data[0] . '" class="lightbox"><img src="' . $data[1] . '" alt="' . $data[2] . '"><span class="seemore zoom">Zoom</span></a>' . "\n"
 			. "\t\t\t\t" . '</div>' . "\n";
 			$first = false;
 		}

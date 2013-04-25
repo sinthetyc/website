@@ -439,9 +439,24 @@ button:hover {
 		width:100%;
 		clear:left;
 	}
-	.grid3, .grid4, .grid8 { width: 94% }
+	.grid3, .grid4, .grid6, .grid8 { width: 94% }
 
 	.seemore {
 		display:block;
+		position:relative;
+		bottom: 1em;
+		padding:2% 12% 2% 8%;
 	}
+	
+	.prev {
+		padding:2% 8% 2% 12%;
+	}
+	
+	.zoom, .next, .prev {
+		background-size: 7% auto;
+	}
+	
+	.zoom { display: none }
+	.next, .prev { display: block !important; }
+	
 }
