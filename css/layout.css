@@ -261,6 +261,7 @@ a:hover {
 }
 
 
+/*
 button {
 	background: #444444;
 	color:#f9f9f9;
@@ -278,12 +279,12 @@ button:hover {
 	background: #555555;
 	box-shadow:0 0 10px #333;
 }
+*/
 
 
 
 
-
-.seemore {
+.seemore, button {
 	font-weight:bold;
 	background: rgba(0,0,0,0.75);
 	color:#f9f9f9;
@@ -320,6 +321,15 @@ button:hover {
 	background-size: 10%;
 }
 
+.more {
+	left:0;
+	background-image: url(/images/more.gif);
+	background-position: 98% 50%;
+	background-size: 2%;
+	display: block;
+	position:inherit;
+	padding: 1% 5% 1% 15%;
+}
 /*
 
 #lightbox .seemore {

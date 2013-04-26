@@ -7,11 +7,12 @@ if( isset($_GET['s']) && isset($_GET['e']) && isset($_GET['f']) ){
 	
 	loadPhotos($start, $end, $file);
 }
-	
+
 function loadPhotos($s, $e, $f){
 	
 	$row = 0;
-	if (($handle = fopen($f, "r")) !== FALSE) {
+
+	if ( ($handle = fopen($f, "r")) !== FALSE ) {
 		
 		while (($data = fgetcsv($handle, 1000, ",")) !== FALSE  && $row <= $e) {
 			$row += 1;
@@ -25,6 +26,10 @@ function loadPhotos($s, $e, $f){
 		}
 		
 		fclose($handle);
+		
+		if($data === FALSE){
+			echo '<!-- eof -->';
+		}
 	}
 }
 

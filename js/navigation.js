@@ -91,24 +91,26 @@ $(document).ready(function(){
 	};
 	
 	
-	$('body').on('click', '#load > button', function(e){
-		$.get('/inc/lazyloader.php?s=1&e=4&f=../photography/wildlife/photos.csv', function(data){
+	$('body').on('click', '#load > .more', function(e){
+		photoStart += 4;
+		photoEnd += 4;
+		$.get('/inc/lazyloader.php?s=' + photoStart + '&e=' + photoEnd + '&f=' + photofile, function(data){
 			$('#load').before(data);
+			if(data.match(/<!-- eof -->/)){
+				$('.more').fadeOut(fxSlow);
+			}
 		});
 	});
 	
 	
 	$(window).on('scroll', function(e){
-		/*if($('#cinemaView').length > 0){
-			$('#cinemaView').center();
-			$('#lightbox').center();
-		}
-		
+		/*
 		if( $(window).scrollTop() == $(document).height() - $(window).height() ){
 			$.get('/inc/lazyloader.php?s=1&e=4&f=../photography/wildlife/photos.csv', function(data){
 				$('#page').append(data);
 			});
-		}*/
+		}
+		*/
 	});
 	
 	
