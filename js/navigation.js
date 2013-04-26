@@ -15,8 +15,7 @@ $(document).ready(function(){
 	$('body').on('click', '.photolink', function(e){
 		e.stopPropagation();
 		e.preventDefault();
-		
-		crumbs.push({path:window.location.pathname});
+
 		getPage($(this).attr('href'), false);
 		
 		return false;
@@ -25,9 +24,10 @@ $(document).ready(function(){
 	window.onpopstate = function(e){
 		if(typeof crumbs[crumbs.length-1] === 'undefined'){
 			history.back();
+		} else {
+			getPage(crumbs[crumbs.length-1].path, true);
+			crumbs.pop();
 		}
-		getPage(crumbs[crumbs.length-1].path, true);
-		crumbs.pop();
 	};
 
 	
@@ -58,7 +58,7 @@ $(document).ready(function(){
 			loadSlide("prev");
 		}
 	}).on('click', '#cinemaView', function(e){
-		if(e.target.id === "slide"){
+		if(e.target.id === "slide" || e.target.className.match(/(next|prev)/)){
 			return false;
 		}
 		closeCinemaView();
@@ -78,14 +78,38 @@ $(document).ready(function(){
 					console.log(e.which);
 			}
 		}
+	}).on('click', '#lightbox .next', function(){
+		loadSlide("next");
+	}).on('click', '#lightbox .prev', function(){
+		loadSlide("prev");
 	});
-
 	
 /* TODO: Codebox for JS demos */
 	
 	window.onresize = function(e){
 		$('#lightbox').center();
 	};
+	
+	
+	$('body').on('click', '#load > button', function(e){
+		$.get('/inc/lazyloader.php?s=1&e=4&f=../photography/wildlife/photos.csv', function(data){
+			$('#load').before(data);
+		});
+	});
+	
+	
+	$(window).on('scroll', function(e){
+		/*if($('#cinemaView').length > 0){
+			$('#cinemaView').center();
+			$('#lightbox').center();
+		}
+		
+		if( $(window).scrollTop() == $(document).height() - $(window).height() ){
+			$.get('/inc/lazyloader.php?s=1&e=4&f=../photography/wildlife/photos.csv', function(data){
+				$('#page').append(data);
+			});
+		}*/
+	});
 	
 	
 });
@@ -102,6 +126,8 @@ function getPage(url, direction){
 	
 	$('#pageHeader').after('<div id="nextpage" class="page left">');
 	$.get(url, function(data){
+		if(!direction) crumbs.push({path:window.location.pathname});
+		
 		var pageData = $(data).find('#page').html(),
 			pageTitle = $(data).find('title').html();
 			
@@ -141,10 +167,10 @@ function loadSlide(target){
 	$(el).addClass('current');
 	
 	if($('#cinemaView').length < 1){
-		$('#container').append('<div id="cinemaView"><div id="lightbox"><img id="slide"/></div></div>');
+		$('body').append('<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><img id="slide"/><span class="next">&nbsp;</span></div></div>');
+		$('#lightbox').center();
+		$('#cinemaView').center();
 	}
-	
-	$('#lightbox').center();
 	
 	$('#slide').animate({'opacity': 0}, fxFast, function(){
 		
@@ -152,7 +178,7 @@ function loadSlide(target){
 		$(this).attr('src', el.href);
 		
 	}).on('load', function(e){
-		var width = e.target.width,
+		var width = e.target.width + 80,
 			height = e.target.height,
 			left = (window.innerWidth / 2) - (width / 2),
 			top = (window.innerHeight / 2) - (height / 2);
@@ -163,7 +189,7 @@ function loadSlide(target){
 			'height': height
 		}, fxSlow, function(){
 			$('#lightbox').removeClass('loading');
-			$('#slide').animate({'opacity': 1}, fxSlow);
+			$('#slide, .prev, .next', '#lightbox').animate({'opacity': 1}, fxSlow);
 		});
 	});
 	
@@ -179,8 +205,7 @@ function closeCinemaView(){
 (function ($) {
 	$.fn.center = function(){
 		this.css({
-			position: 'absolute',
-			top: (($(window).height() - this.height()) / 2) + $(window).scrollTop(),
+			top: (($(window).height() - this.height()) / 2),
 			left: (($(window).width() - this.width()) / 2)
 		});
 		return this;
