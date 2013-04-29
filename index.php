@@ -6,11 +6,11 @@
 		$page_title = "Home | Pixel Monkey";
 		//$add_css = array();
 		$add_script = array('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js');
-		require $dir . './inc/head.php';
+		require 'inc/head.php';
 	?>
 	<body>
 		<div id="container">
-		<?php require $dir . '/inc/header.php'; ?>
+		<?php require 'inc/header.php'; ?>
 		
 		<div id="page" class="page left">
 			<div class="col grid8 left">
@@ -19,31 +19,31 @@
 			</div>
 			<div class="col grid4 left clear">
 				<h2>Web Design</h2>
-				<a class="photolink" href="/web/">
-					<img src="../images/web-design.jpg">
+				<a class="photolink" href="web/">
+					<img src="images/web-design.jpg">
 					<span class="seemore next">See more</span>
 				</a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
 			</div>
 			<div class="col grid4 left">
 				<h2>Print Design</h2>
-				<a class="photolink" href="/print/">
-					<img src="../images/print-design.jpg">
+				<a class="photolink" href="print/">
+					<img src="images/print-design.jpg">
 					<span class="seemore next">See more</span>
 				</a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
 			</div>
 			<div class="col grid4 left">
 				<h2>Photography</h2>
-				<a class="photolink" href="/photography/">
-					<img src="../images/photography.jpg">
+				<a class="photolink" href="photography/">
+					<img src="images/photography.jpg">
 					<span class="seemore next">See more</span>
 				</a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
 			</div>
 		</div>
 		
-		<?php require $dir . '/inc/footer.php'; ?>
+		<?php require 'inc/footer.php'; ?>
 		</div>
 	</body>
 </html>

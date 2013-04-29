@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 	<?php
-		$dir = $_SERVER['DOCUMENT_ROOT'];
+		$dir = '../';
 		$page_title = "Home | Pixel Monkey";
 		//$add_css = array();
 		$add_script = array('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js');
-		require $dir . './inc/head.php';
+		require $dir . 'inc/head.php';
 	?>
 	<body>
 		<div id="container">
-		<?php require $dir . '/inc/header.php'; ?>
+		<?php require $dir . 'inc/header.php'; ?>
 		
 		<div id="page" class="page left">
 			<div class="col grid8 left">
@@ -33,7 +33,7 @@
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
 			</div>
 		</div>
-		<?php require $dir . '/inc/footer.php'; ?>
+		<?php require $dir . 'inc/footer.php'; ?>
 		</div>
 	</body>
 </html>
