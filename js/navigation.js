@@ -1,4 +1,5 @@
 var crumbs = [],
+	origPop = true,
 	transition = false,
 	fxFast = 100,
 	fxMedium = 200,
@@ -22,6 +23,7 @@ $(document).ready(function(){
 	});
 
 	window.onpopstate = function(e){
+		if(origPop) return false;
 		if(typeof crumbs[crumbs.length-1] === 'undefined'){
 			history.back();
 		} else {
@@ -132,7 +134,8 @@ function getPage(url, direction){
 		
 		var pageData = $(data).find('#page').html(),
 			pageTitle = $(data).find('title').html();
-			
+		
+		if(origPop) origPop = !origPop;
 		history.pushState({}, "", url);
 		
 		$('#nextpage').html(pageData);
