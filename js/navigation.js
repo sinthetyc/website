@@ -170,7 +170,7 @@ function loadSlide(target){
 	$('.current').removeClass('current');
 	$(el).addClass('current');
 	
-	var codebox = (el.href.match(/.html/ig).length === 1),
+	var codebox = (el.href.match(/.html/ig) || []).length === 1,
 		cinemaViewHTML = codebox ? '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><iframe id="slide"></iframe><span class="next">&nbsp;</span></div></div>' : '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><img id="slide"/><span class="next">&nbsp;</span></div></div>';
 	
 	if($('#cinemaView').length < 1){
