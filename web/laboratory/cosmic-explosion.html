@@ -26,7 +26,7 @@
 					halfX = w/2;
 					halfY = h/2;
 				});
-				canvas.addEventListener('mousemove', function(e){ mX = e.pageX-20; mY = e.pageY-20; });
+				canvas.addEventListener('mousemove', function(e){ mX = e.pageX; mY = e.pageY; });
 				canvas.addEventListener('mousedown', function(e){ mousedown = true; });
 				canvas.addEventListener('mouseup', function(e){ mousedown = false; });
 				higgsboson = new Explode(50);
