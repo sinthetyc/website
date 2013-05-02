@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+	<head>
+		<style type="text/css">
+			*{margin:0;padding:0;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}
+			body{font-size:75%;background:#222;font-family:arial;}
+			canvas{border:1px solid #181818;display:block;box-shadow:0 0 10px #111}
+		</style>
+		<script type="text/javascript">
+			var canvas, c, w, h,
+				twoPI = Math.PI * 2,
+				keydown,
+				angleTweak = 0,
+				mX = window.innerWidth/2,
+				mY = window.innerHeight/2,
+				mEffectRadius = 300,
+				mEffectStrength = 6,
+				pRelaxStrength = 20,
+				defaultColour = "rgba(0,128,128,1)",
+				highlightColour = "rgba(255,50,50,1)";
+			
+			window.onload = function(){
+				canvas = document.createElement('canvas')
+				w = canvas.width = window.innerWidth;
+				h = canvas.height = window.innerHeight;
+				c = canvas.getContext('2d');
+				document.body.appendChild(canvas);
+				
+				var balls = new Balls(500);
+
+				window.addEventListener('resize', function(e){
+					w = canvas.width = window.innerWidth - 40;
+					h = canvas.height = window.innerHeight - 40;
+					balls.reset();
+				});
+				window.addEventListener('keydown', function(e){
+					if(e.shiftKey){
+						mEffectStrength = -6;
+					}
+				});
+				window.addEventListener('keyup', function(e){
+					mEffectStrength = 6;
+				});
+				window.addEventListener('DOMMouseScroll', function(e){
+					console.log(e);
+					e.preventDefault();
+					e.stopPropagation();
+					angleTweak += e.detail/30;
+				});
+				canvas.addEventListener('mousemove', function(e){
+					mX = e.pageX - 20;
+					mY = e.pageY - 20;
+				});
+				canvas.addEventListener('mousedown', function(e){
+					if(e.shiftKey){
+						mEffectStrength = -200;
+					} else {
+						mEffectStrength = 200;
+					}
+					window.setTimeout(function(){
+						mEffectStrength = 6;
+					},66);
+				});
+				window.setInterval(function(){ balls.animate(); }, 33);
+			}
+			
+			function Ball(x,y,r,c){
+				this.x = x;
+				this.origX = x;
+				this.y = y;
+				this.origY = y;
+				this.r = r;
+				this.c = c;
+			}
+			
+			function Balls(num){
+				var size = 5,
+					xCount = 50,
+					yCount = 20;
+					
+				this.points = [];
+				this.move = function(){
+					var points = this.points;
+					for(var p in points){
+						var v1m = points[p].x - mX,
+							v2m = points[p].y - mY,
+							vDm = Math.sqrt(v1m*v1m + v2m*v2m),
+							vAm = Math.atan2(v2m, v1m) + angleTweak;
+							v1o = points[p].x - points[p].origX,
+							v2o = points[p].y - points[p].origY,
+							vDo = Math.sqrt(v1o*v1o + v2o*v2o),
+							vAo = Math.atan2(v2o, v1o) + twoPI/8;
+								
+						if(vDm < mEffectRadius){
+							this.points[p].x = this.points[p].x + (Math.cos(vAm) * (mEffectStrength*20/vDm));
+							this.points[p].y = this.points[p].y + (Math.sin(vAm) * (mEffectStrength*20/vDm));
+						} else {
+							this.points[p].x = points[p].x - Math.cos(vAo)/(pRelaxStrength/vDo);
+							this.points[p].y = points[p].y - Math.sin(vAo)/(pRelaxStrength/vDo);
+						}
+						
+						var col = Math.round((vDo/mEffectRadius)*128);
+						this.points[p].c = "rgba(0," + (128+col) + "," + (128-col) + ",1)";
+					}
+				};
+				this.draw = function(){
+					var points = this.points;
+					c.save();
+					for(var p = 0; p < this.points.length; p++){
+						c.fillStyle = c.strokeStyle = points[p].c;
+						//c.fillRect(points[p].x, points[p].y, size*2, size*2);
+						c.beginPath();
+						c.arc(points[p].x, points[p].y, points[p].r, 0, twoPI, true);
+						c.closePath();
+						c.fill();
+					}
+					c.restore();
+				};
+				this.animate = function(){
+					this.move();
+					c.clearRect(0,0,w,h);
+					this.draw();
+				};
+				this.reset = function(){
+					var halfX = w/2 - 50*size*1.2,
+						halfY = h/2 - 20*size*1.2,
+						p = 0;
+					for(var y = 0; y < yCount; y++){
+						for(var x = 0; x < xCount; x++){
+							var bX = (x * size * 2.2) + halfX,
+								bY = (y * size * 2.2) + halfY;
+							this.points[p].origX = bX;
+							this.points[p].origY = bY;
+							p++;
+						}
+					}
+				};
+				
+				var	halfX = w/2 - xCount*size*2.2/2,
+					halfY = h/2 - yCount*size*2.2/2;
+				for(var y = 1; y <= yCount; y++){
+					for(var x = 1; x <= xCount; x++){
+						var bX = (x * size * 2.2) + halfX,
+							bY = (y * size * 2.2) + halfY;
+						this.points.push(new Ball(bX, bY, size, defaultColour));
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+	<span id="debug"></span>
+	</body>
+</html>

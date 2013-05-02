@@ -6,10 +6,10 @@ var crumbs = [],
 	fxSlow = 300;
 
 $(document).ready(function(){
-	if(window.innerWidth > 820){
-		$('.subnav').css({display:'none'});
-		$('nav > ul > li').hover(function(){ $(this).children('.subnav').stop().show('slide', {direction:'left'}, 300); }, function(){$(this).children('.subnav').stop().hide('slide',{direction:'left'},300); });	
-	}
+	//if(window.innerWidth > 820){
+	//	$('.subnav').css({display:'none'});
+	//	$('nav > ul > li').hover(function(){ $(this).children('.subnav').stop().show('slide', {direction:'left'}, 300); }, function(){$(this).children('.subnav').stop().hide('slide',{direction:'left'},300); });	
+	//}
 	
 	
 	/* navigate */
@@ -168,11 +168,13 @@ function loadSlide(target){
 	}
 
 	$('.current').removeClass('current');
-	
 	$(el).addClass('current');
 	
+	var codebox = (el.href.match(/.html/ig).length === 1),
+		cinemaViewHTML = codebox ? '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><iframe id="slide"></iframe><span class="next">&nbsp;</span></div></div>' : '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><img id="slide"/><span class="next">&nbsp;</span></div></div>';
+	
 	if($('#cinemaView').length < 1){
-		$('body').append('<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><img id="slide"/><span class="next">&nbsp;</span></div></div>');
+		$('body').append(cinemaViewHTML);
 		$('#lightbox').center();
 		$('#cinemaView').center();
 	}
@@ -183,8 +185,8 @@ function loadSlide(target){
 		$(this).attr('src', el.href);
 		
 	}).on('load', function(e){
-		var width = e.target.width + 80,
-			height = e.target.height,
+		var width = (codebox ? e.target.offsetWidth : e.target.width) + 80,
+			height = (codebox ? e.target.offsetHeight : e.target.height),
 			left = (window.innerWidth / 2) - (width / 2),
 			top = (window.innerHeight / 2) - (height / 2);
 		$('#lightbox').animate({

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			*{margin:0;padding:0;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}
+			body{font-size:75%;background:#222;font-family:arial;}
+			canvas{border:1px solid #181818;display:block;box-shadow:0 0 10px #111;background:#000}
+			#osr{display:none;}
+		</style>
+		<script type="text/javascript">
+			var viewport, c, w, h, twoPI = Math.PI * 2;
+			var osr, o, ow, oh;
+			var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+			window.requestAnimationFrame = requestAnimationFrame;
+			
+			var palette = [
+				"rgba(85,66,54,0.75)",
+				"rgba(247,120,37,0.75)",
+				"rgba(211,206,61,0.75)",
+				"rgba(241,239,165,0.75)",
+				"rgba(96,185,154,0.75)"
+			];
+			
+			window.onload=function(){
+				viewport = document.getElementById("viewPort");
+				c = viewport.getContext("2d");
+				w = viewport.width = window.innerWidth;
+				h = viewport.height = window.innerHeight;
+				h = viewport.height;
+				
+				offscreen = document.getElementById("osr");
+				o = offscreen.getContext("2d");
+				ow = offscreen.width;
+				oh = offscreen.height;
+				
+				var kscope = function(num){
+					this.points = [];
+					this.circle = function(){
+						return {
+							x: ow/2,
+							y: oh/2,
+							rad: Math.random()*24+1,
+							xd: (Math.random()*2-1)*0.9,
+							yd: (Math.random()*2-1)*0.9,
+							rgba: palette[Math.round(Math.random()*4)]
+						};
+					};
+					this.draw = function(){
+						o.save();
+							o.beginPath();
+							o.moveTo(ow/2,0); o.lineTo(ow,oh); o.lineTo(0,oh);
+							o.closePath();
+							o.clip();
+							for(var p in this.points){
+								o.fillStyle = this.points[p].rgba;;
+								o.beginPath();
+								o.arc(this.points[p].x, this.points[p].y, this.points[p].rad, 0, twoPI, true);
+								o.closePath();
+								o.fill();
+							}
+						o.restore();
+					};
+					this.move = function(){
+						for(p in this.points){
+							this.points[p].x += this.points[p].xd;
+							this.points[p].y += this.points[p].yd;
+							if(this.points[p].x > ow || this.points[p].x < 0) this.points[p].xd = -this.points[p].xd;
+							if(this.points[p].y > oh || this.points[p].y < 0) this.points[p].yd = -this.points[p].yd;
+						}
+					};
+					this.render = function(){
+						this.draw();
+						c.save();
+						c.beginPath();
+						c.arc(w/2,h/2,400,0,twoPI,true);
+						c.closePath();
+						c.clip();
+						c.translate(w/2,h/2);
+						for(var i = 0; i < 6; i++){
+							c.drawImage(offscreen,-ow/2,0);
+							c.rotate(Math.PI/3);
+						};
+					
+						c.scale(-1, 1);
+						c.rotate(Math.PI/2);
+						for(var i = 0; i < 6; i++){
+							c.drawImage(offscreen,-ow/2,0);
+							c.rotate(Math.PI/3);
+						};
+						c.restore();
+					};
+					this.animate = function(){
+						this.clear();
+						this.move();
+						this.render();
+					};
+					this.clear = function(){
+						o.clearRect(0,0,w,h);
+						c.save();
+						c.fillStyle = "rgba(0,0,0,0.02)";
+						c.fillRect(0,0,w,h);
+						c.restore();
+					};
+
+					for(var p = 0; p < num; p++){
+						this.points.push( new this.circle );
+					}
+				};
+
+				var k = new kscope(50);
+				
+				var animate = function(){
+					window.requestAnimationFrame(animate);
+					k.animate();
+				};
+				
+				animate();
+				
+			};
+			
+		</script>
+	</head>
+	<body>
+		<canvas id="viewPort" width="900" height="450"></canvas>
+		<canvas id="osr" width="215" height="400"></canvas>
+	</body>
+</html>

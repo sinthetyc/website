@@ -161,16 +161,18 @@ body {background:url(../images/pattern.png) #333;}
 	margin:10px 10px 10px 3%
 }
 
-#pageHeader ul {
-	float:left
+#pageHeader nav > ul {
+	float:left;
+	height:80px;
 }
 
-nav li { float:left }
+nav li { float:left;}
 
 nav a {
 	float:left;
 	text-decoration:none;
-	padding: 38px 20px;
+	width: 93.5%;
+	padding: 12px;
 	color: #222222;
 	background: #f9f9f9;
 	text-transform:uppercase;
@@ -188,25 +190,24 @@ nav a.current{
 	display:block;
 	background:#444;
 	float:left;
-	width:160px;
+	width:100%;
 }
 
 .subnav a {
-	padding:13px 0 13px 20px;
+	padding:14px;
 	color:#f9f9f9;
 	background:none;
-	width:140px;
+	width:auto;
 }
 .subnav a:hover {
 	background:#555;
 	color:#f9f9f9;
-	padding:13px 0 13px 20px;
+	padding:14px;
 }
 
 .subnav li {
 	float:left;
-	clear:left;
-	width:100%;
+	width:auto;
 }
 
 
@@ -389,13 +390,24 @@ button:hover {
 	background: #333 url(../images/loading.gif) no-repeat 50% !important;
 }
 
-#slide {
+img#slide {
 	opacity: 0;
 	width:800px;
 	height:auto;
 	display:block;
 	float: left;
 	border: solid #111;
+	border-width: 0 1px;
+}
+
+iframe#slide {
+	opacity: 0;
+	width: 800px;
+	height: 600px;
+	display: block;
+	float: left;
+	border: solid #111;
+	overflow: hidden;
 	border-width: 0 1px;
 }
 

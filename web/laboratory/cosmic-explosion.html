@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+	<head>
+		<style type="text/css">
+			*{margin:0;padding:0;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}
+			body{font-size:75%;background:#222;font-family:arial;}
+			canvas{border:1px solid #181818;display:block;box-shadow:0 0 10px #111}
+		</style>
+		<script type="text/javascript">
+			var canvas, c, w, h, halfX, halfY,
+				twoPI = Math.PI * 2,
+				mX, mY, mousedown, higgsboson;
+
+			window.requestAnimFrame=function(){return window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||function(a){window.setTimeout(a,1E3/60)}}();
+			window.onload = function(){
+				canvas = document.createElement('canvas')
+				w = canvas.width = window.innerWidth;
+				h = canvas.height = window.innerHeight;
+				c = canvas.getContext('2d');
+				halfX = w/2;
+				halfY = h/2;
+				document.body.appendChild(canvas);
+
+				window.addEventListener('resize', function(e){
+					w = canvas.width = window.innerWidth;
+					h = canvas.height = window.innerHeight;
+					halfX = w/2;
+					halfY = h/2;
+				});
+				canvas.addEventListener('mousemove', function(e){ mX = e.pageX-20; mY = e.pageY-20; });
+				canvas.addEventListener('mousedown', function(e){ mousedown = true; });
+				canvas.addEventListener('mouseup', function(e){ mousedown = false; });
+				higgsboson = new Explode(50);
+			}
+
+			
+			function Explode(count){
+				var points = [];
+				var animID = null;
+				
+				function Point(){
+					this.x = halfX; //Math.random()*w;
+					this.y = halfY; //Math.random()*h;
+					this.d = Math.random()*10-5;
+					this.dd = (Math.random()*1-0.5)/100;
+					this.a = Math.random()*twoPI;
+					this.ad = (Math.random()*twoPI-Math.PI) / 128;
+					this.alpha = 0;
+				}
+				
+				function init(count){
+					for(var p = 0; p < count; p++){
+						points.push(new Point());
+					}
+					animate();
+				}
+			
+				function update(){
+					for(var p = 0; p < points.length; p++){
+						if(points[p].alpha < 1)
+							points[p].alpha += 0.01;
+						
+						var xd = mX - points[p].x,
+							yd = mY - points[p].y,
+							md = Math.sqrt(xd * xd + yd * yd),
+							ma = Math.atan2(yd, xd);
+							
+						if(md < 100)
+							points[p].a = ma;
+						
+						points[p].a += points[p].ad;
+						points[p].d += points[p].dd;
+
+						points[p].x += Math.cos(points[p].a) * points[p].d;
+						points[p].y += Math.sin(points[p].a) * points[p].d;
+						
+						if(points[p].x > w){
+							points[p] = new Point();
+							continue;
+						}
+							
+						if(points[p].x < 0){
+							points[p] = new Point();
+							continue;
+						}
+							
+						if(points[p].y > h){
+							points[p] = new Point();
+							continue;
+						}
+							
+						if(points[p].y < 0){
+							points[p] = new Point();
+							continue;
+						}
+					
+					}
+				}
+			
+				function draw(){
+					for(var p = 0; p < points.length; p++){
+						c.fillStyle = "hsla(" + (points[p].x/w * 360) + ",50%,50%," + points[p].alpha + ")";
+						c.beginPath();
+						c.arc(points[p].x, points[p].y, Math.abs(points[p].dd)*1000, 0, twoPI, false);
+						c.closePath();
+						c.fill();
+						for(var p2 = p; p2 < points.length; p2++){
+							var dx = points[p2].x - points[p].x,
+								dy = points[p2].y - points[p].y,
+								dd = Math.sqrt(dx * dx + dy * dy);
+							if(dd < 100){
+								c.beginPath();
+								c.moveTo(points[p].x, points[p].y);
+								c.lineTo(points[p2].x, points[p2].y);
+								c.strokeStyle = "hsla(" + (points[p].x/w * 360) + ",50%,50%," + (1-(dd/50)) + ")";
+								c.stroke();
+							}
+						}
+
+					}
+				}
+			
+				function clear(){
+					if(mousedown){
+						c.clearRect(0,0,w,h);
+						return;
+					}
+					c.save();
+						c.fillStyle = "rgba(0,0,0,0.01)";
+						c.fillRect(0,0,w,h);
+					c.restore();
+				}
+			
+				function animate(){
+					update();
+					clear();
+					draw();
+					requestAnimFrame(animate);
+				}
+				
+				init(count);
+			}
+			
+		</script>
+	</head>
+	<body>
+	
+	</body>
+</html>
