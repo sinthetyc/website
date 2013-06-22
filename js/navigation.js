@@ -13,7 +13,7 @@ $(document).ready(function(){
 	
 	
 	/* navigate */
-	$('body').on('click', '.photolink', function(e){
+	$('body').on('click', '.photolink, a', function(e){
 		e.stopPropagation();
 		e.preventDefault();
 
@@ -22,6 +22,13 @@ $(document).ready(function(){
 		return false;
 	});
 
+	/*
+	$('#logo').css({ 'opacity': 0 }).animate({ 'opacity': 1 }, fxSlow, function(){
+		$('#pageFooter').css({ 'height': window.innerHeight /2 }).animate({ 'height': 38 }, 5000);
+		$('#pageHeader').css({ 'height': window.innerHeight /2 }).animate({ 'height': 100 }, 5000);
+	});
+	*/
+	
 	window.onpopstate = function(e){
 		if(origPop) return false;
 		if(typeof crumbs[crumbs.length-1] === 'undefined'){
@@ -41,7 +48,7 @@ $(document).ready(function(){
 	});
 	
 
-	/* lightbox for photos */
+	/* lightbox */
 	$('body').on('click', '.lightbox', function(e){
 		e.stopPropagation();
 		e.preventDefault();
@@ -182,7 +189,7 @@ function loadSlide(target){
 		offsetLeft = document.getElementById('lightbox').offsetLeft;
 		first = true;
 	} else {
-		offsetLeft = target === "next" ? -window.innerWidth + document.getElementById('lightbox').offsetLeft : window.innerWidth + document.getElementById('lightbox').offsetLeft;
+		offsetLeft = target === "next" ? -window.innerWidth - document.getElementById('lightbox').offsetLeft : window.innerWidth + document.getElementById('lightbox').offsetLeft;
 	}
 	
 	$('#lightbox').animate({'left': offsetLeft}, fxSlow, function(){
@@ -201,8 +208,7 @@ function loadSlide(target){
 				'width': width,
 				'height': height
 			}, fxSlow, function(){
-				if(first)
-					$('#slide, .prev, .next', '#lightbox').animate({'opacity': 1}, fxSlow);
+				$('#slide, .prev, .next', '#lightbox').animate({'opacity': 1}, fxSlow);
 			});
 		});
 	});

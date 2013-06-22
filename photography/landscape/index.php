@@ -26,7 +26,7 @@
 					<a class="seemore more" href="javascript:void(0);">More</a>
 				</div>
 				<script>var photofile = '../photography/landscape/photos.csv', photoStart = 1, photoEnd = 3;</script>
-				<style>#container {background-image:url(/images/landscapes.png);}</style>
+				<style>body {background-image:url(/images/landscapes.png);}</style>
 			</div>
 		<?php require $dir . 'inc/footer.php'; ?>
 		</div>
