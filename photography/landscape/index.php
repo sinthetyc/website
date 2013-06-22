@@ -4,7 +4,6 @@
 		$dir = '../../';
 		$page_title = "Photogrpahy - Wildlife | Pixel Monkey";
 		$add_script = array('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js');
-
 		require $dir . 'inc/head.php';
 		require $dir . 'inc/lazyloader.php';
 	?>
@@ -27,6 +26,7 @@
 					<a class="seemore more" href="javascript:void(0);">More</a>
 				</div>
 				<script>var photofile = '../photography/landscape/photos.csv', photoStart = 1, photoEnd = 3;</script>
+				<style>#container {background-image:url(/images/landscapes.png);}</style>
 			</div>
 		<?php require $dir . 'inc/footer.php'; ?>
 		</div>

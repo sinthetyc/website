@@ -129,7 +129,7 @@ input, select {
 .right{float:right;}
 .clear{clear:both;}
 
-body {background:url(../images/pattern.png) #333;}
+#container {background:url(../images/pattern.png) #333;}
 
 .page {
 	width:100%; height:auto;
@@ -387,7 +387,7 @@ button:hover {
 }
 
 .loading {
-	background: #333 url(../images/loading.gif) no-repeat 50% !important;
+	background: rgba(34,34,34,0.75) url(../images/loading.gif) no-repeat 50% !important;
 }
 
 img#slide {
