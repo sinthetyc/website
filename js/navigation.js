@@ -13,7 +13,7 @@ $(document).ready(function(){
 	
 	
 	/* navigate */
-	$('body').on('click', '.photolink, a', function(e){
+	$('body').on('click', '.photolink, nav a', function(e){
 		e.stopPropagation();
 		e.preventDefault();
 
@@ -102,7 +102,7 @@ $(document).ready(function(){
 	
 	$('body').on('click', '#load > .more', function(e){
 		photoStart += 4;
-		photoEnd += 4;
+		photoEnd = photoStart + 4;
 		$.get('/inc/lazyloader.php?s=' + photoStart + '&e=' + photoEnd + '&f=' + photofile, function(data){
 			$('#load').before(data);
 			if(data.match(/<!-- eof -->/)){

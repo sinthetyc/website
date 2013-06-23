@@ -14,7 +14,7 @@ function loadPhotos($s, $e, $f){
 
 	if ( ($handle = fopen($f, "r")) !== FALSE ) {
 		
-		while (($data = fgetcsv($handle, 1000, ",")) !== FALSE  && $row <= $e) {
+		while (($data = fgetcsv($handle, 1000, ",")) !== FALSE  && $row < $e) {
 			$row += 1;
 			
 			if( $row < $s ) continue;

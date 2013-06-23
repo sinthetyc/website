@@ -4,6 +4,7 @@ $n = "\n";
 echo '<head>
 		<meta charset=utf-8>
 		<title>' . (isset($page_title) ? $page_title : 'Pixel Monkey') . '</title>
+		<base href="' . $_SERVER['HTTP_HOST'] . '">
 		<link rel="shortcut icon" href="/images/favicon.ico">
 ';
 
