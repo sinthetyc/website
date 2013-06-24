@@ -1,3 +1,6 @@
+/* google font import - Open Sans Family */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800|Open+Sans+Condensed:300,700);
+
 /* start: reset */
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -21,7 +24,8 @@ time, mark, audio, video {
 }
 
 body {
-	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-family: 'Open Sans', Arial, 'sans serif';/*"Century Gothic", CenturyGothic, AppleGothic, sans-serif;*/
+	font-weight: 300;
     line-height:1.5;
 }
 
@@ -246,7 +250,7 @@ nav a.current{
 	padding:13px 10px 13px 16px;
 	color:#222222;
 	background:none;
-	width:130px;
+	width:120px;
 	height:auto;
 }
 
@@ -531,6 +535,23 @@ iframe#slide {
 #lightbox .next {
 	float: right;
 }
+
+#metadata {
+	float: left;
+	position: absolute;
+	left: 40px;
+	width:100%;
+	bottom: 0px;
+	background:rgba(0,0,0,0.75);
+	list-style: none;
+	font-size:11px;
+	color:#f9f9f9;
+	width:760px;
+	padding: 10px 20px;
+	display:block;
+	opacity:0;
+}
+
 
 /*
 .loading{

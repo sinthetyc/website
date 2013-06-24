@@ -6,11 +6,6 @@ var crumbs = [],
 	fxSlow = 300;
 
 $(document).ready(function(){
-	//if(window.innerWidth > 820){
-	//	$('.subnav').css({display:'none'});
-	//	$('nav > ul > li').hover(function(){ $(this).children('.subnav').stop().show('slide', {direction:'left'}, 300); }, function(){$(this).children('.subnav').stop().hide('slide',{direction:'left'},300); });	
-	//}
-	
 	
 	/* navigate */
 	$('body').on('click', '.photolink, nav a', function(e){
@@ -45,6 +40,10 @@ $(document).ready(function(){
 		$(this).children('.seemore').stop().fadeIn();
 	}).on('mouseleave', '.photolink, .lightbox', function(){
 		$(this).children('.seemore').stop().fadeOut();
+	}).on('mouseover', '#slide, #metadata', function(){
+		$('#metadata').stop().animate({ 'opacity': 1 }, fxSlow);
+	}).on('mouseout', '#slide, #metadata', function(){
+		$('#metadata').stop().animate({ 'opacity': 0 }, fxSlow);
 	});
 	
 
@@ -153,6 +152,7 @@ function getPage(url, direction){
 		});
 	}).fail(function(){
 		transition = false;
+		console.log('Under Construction');
 	});
 }
 
@@ -173,12 +173,20 @@ function loadSlide(target){
 		default:
 			el = target;
 	}
-
+	
+	var title = el.children[0].getAttribute('title'),
+		metadata = el.children[0].dataset.meta.split("|");
+	
 	$('.current').removeClass('current');
 	$(el).addClass('current');
 	
 	var codebox = (el.href.match(/.html/ig) || []).length === 1,
-		cinemaViewHTML = codebox ? '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><iframe id="slide" frameborder="0" scrolling="no"></iframe><span class="next">&nbsp;</span></div></div>' : '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><img id="slide"/><span class="next">&nbsp;</span></div></div>';
+		cinemaViewHTML = codebox ? '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><iframe id="slide" frameborder="0" scrolling="no"></iframe><ul id="metadata"></ul><span class="next">&nbsp;</span></div></div>' : '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><img id="slide"/><ul id="metadata"></ul><span class="next">&nbsp;</span></div></div>',
+		metadataHTML = '';
+	
+	for(var i = 0; i < metadata.length; i++){
+		metadataHTML += '<li>' + metadata[i] + '</li>';
+	}
 	
 	if($('#cinemaView').length < 1){
 		$('body').append(cinemaViewHTML);
@@ -200,6 +208,8 @@ function loadSlide(target){
 				top = (window.innerHeight / 2) - (height / 2);
 				
 			$('#cinemaView').removeClass('loading');
+			
+			$('#metadata').html(metadataHTML);
 			$('#lightbox').animate({
 				'left': left,
 				'top': top,
@@ -209,7 +219,7 @@ function loadSlide(target){
 				$('#slide, .prev, .next', '#lightbox').animate({'opacity': 1}, fxSlow);
 			});
 		});
-	});
+	})
 
 	
 }

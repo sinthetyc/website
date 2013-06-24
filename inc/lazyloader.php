@@ -20,7 +20,7 @@ function loadPhotos($s, $e, $f){
 			if( $row < $s ) continue;
 			
 			echo "\t\t\t\t" . '<div class="col grid3 left' . ($row === $s ? ' clear' : '') . '">' . "\n"
-			. "\t\t\t\t\t" . '<a href="' . $data[0] . '" class="lightbox"><img src="' . $data[1] . '" alt="' . $data[2] . '"><span class="seemore zoom">Zoom</span></a>' . "\n"
+			. "\t\t\t\t\t" . '<a href="' . $data[0] . '" class="lightbox"><img src="' . $data[1] . '" alt="' . $data[2] . '" title="' . $data[2] . '" data-meta="this|that|the other"><span class="seemore zoom">Zoom</span></a>' . "\n"
 			. "\t\t\t\t" . '</div>' . "\n";
 			
 		}
