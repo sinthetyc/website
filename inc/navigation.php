@@ -28,7 +28,7 @@ echo '
 							</ul>
 						</li>
 						<li>
-							<a href="/photography/">Photography</a>
+							<a href="/photography/">Photo</a>
 							<ul class="subnav">
 								<li>
 									<a href="/photography/landscape/">Landscape</a>
