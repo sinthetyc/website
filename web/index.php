@@ -17,7 +17,7 @@
 			</div>
 			<div class="col grid6 left clear">
 				<h2>Web Design</h2>
-				<a class="photolink" href="/web/">
+				<a class="photolink" href="/web/design/">
 					<img src="/images/web-design.jpg">
 					<span class="seemore next">See more</span>
 				</a>

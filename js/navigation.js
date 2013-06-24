@@ -86,8 +86,6 @@ $(document).ready(function(){
 		loadSlide("prev");
 	});
 	
-/* TODO: Codebox for JS demos */
-	
 	window.onresize = function(e){
 		$('#lightbox').center();
 	};
@@ -171,7 +169,7 @@ function loadSlide(target){
 	$(el).addClass('current');
 	
 	var codebox = (el.href.match(/.html/ig) || []).length === 1,
-		cinemaViewHTML = codebox ? '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><iframe id="slide"></iframe><span class="next">&nbsp;</span></div></div>' : '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><img id="slide"/><span class="next">&nbsp;</span></div></div>';
+		cinemaViewHTML = codebox ? '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><iframe id="slide" frameborder="0" scrolling="no"></iframe><span class="next">&nbsp;</span></div></div>' : '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><img id="slide"/><span class="next">&nbsp;</span></div></div>';
 	
 	if($('#cinemaView').length < 1){
 		$('body').append(cinemaViewHTML);

@@ -2,7 +2,7 @@
 <html lang="en">
 	<?php
 		$dir = '../../';
-		$page_title = "Photogrpahy - Wildlife | Pixel Monkey";
+		$page_title = "Web Laboratory - Experiments | Pixel Monkey";
 		$add_script = array('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js');
 		
 		require $dir . 'inc/head.php';
