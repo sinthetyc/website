@@ -52,6 +52,9 @@
 			$thumb_src = 'http://farm'.$farm.'.static.flickr.com/'.$server.'/'.$photo_id.'_'.$secret.'_n.jpg';
 			$image_src = 'http://farm'.$farm.'.static.flickr.com/'.$server.'/'.$photo_id.'_'.$secret.'_z.jpg';
 
+
+//TODO:  Get photo EXIF for metadata overlay.
+
 			echo "\t\t\t\t" . '<div class="col grid3 left">' . "\n"
 				. "\t\t\t\t\t" . '<a href="' . $image_src . '" class="lightbox"><img src="' . $thumb_src . '" alt="' . $photo_title . '" title="' . $photo_title . '" data-meta="this|that|the other"><span class="seemore zoom">Zoom</span></a>' . "\n"
 				. "\t\t\t\t" . '</div>' . "\n";
