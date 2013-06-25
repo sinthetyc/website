@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 	<?php
-		//testing github :)
-		$dir = $_SERVER['DOCUMENT_ROOT'];
+		$root = $_SERVER['DOCUMENT_ROOT'];
 		$page_title = "Home | Pixel Monkey";
 		//$add_css = array();
 		$add_script = array('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js');
-		require 'inc/head.php';
+		require $root . '/inc/head.php';
 	?>
 	<body>
 		<div id="container">
-		<?php require 'inc/header.php'; ?>
+		<?php require $root . '/inc/header.php'; ?>
 		
 		<div id="page" class="page left">
 			<div class="col grid8 left">
@@ -43,7 +42,7 @@
 			</div>
 		</div>
 		
-		<?php require 'inc/footer.php'; ?>
+		<?php require $root . '/inc/footer.php'; ?>
 		</div>
 	</body>
 </html>

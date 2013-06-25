@@ -498,7 +498,7 @@ button:hover {
 
 img#slide {
 	opacity: 0;
-	width:800px;
+	width:auto;
 	height:auto;
 	display:block;
 	float: left;
@@ -546,7 +546,7 @@ iframe#slide {
 	list-style: none;
 	font-size:11px;
 	color:#f9f9f9;
-	width:760px;
+	width:auto;
 	padding: 10px 20px;
 	display:block;
 	opacity:0;

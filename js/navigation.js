@@ -3,7 +3,8 @@ var crumbs = [],
 	transition = false,
 	fxFast = 100,
 	fxMedium = 200,
-	fxSlow = 300;
+	fxSlow = 300,
+	page = 1;
 
 $(document).ready(function(){
 	
@@ -98,9 +99,16 @@ $(document).ready(function(){
 	
 	
 	$('body').on('click', '#load > .more', function(e){
-		photoStart += 4;
-		photoEnd = photoStart + 4;
-		$.get('/inc/lazyloader.php?s=' + photoStart + '&e=' + photoEnd + '&f=' + photofile, function(data){
+		var url = '';
+		if(flickr){
+			page += 1;
+			url = '/inc/lazyloader-flickr.php?page=' + page;
+		} else {
+			photoStart += 4;
+			photoEnd = photoStart + 4;
+			url = '/inc/lazyloader.php?s=' + photoStart + '&e=' + photoEnd + '&f=' + photofile;
+		}
+		$.get(url, function(data){
 			$('#load').before(data);
 			if(data.match(/<!-- eof -->/)){
 				$('.more').fadeOut(fxSlow);

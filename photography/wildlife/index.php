@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 	<?php
-		$dir = '../../';
+		$root = $_SERVER['DOCUMENT_ROOT'];
 		$page_title = "Photogrpahy - Wildlife | Pixel Monkey";
 		$add_script = array('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js');
 		
-		require $dir . 'inc/head.php';
-		require $dir . 'inc/lazyloader.php';
+		require $root . '/inc/head.php';
+		require $root . '/inc/lazyloader.php';
 	?>
 	<body>
 		<div id="container">
-		<?php require $dir . 'inc/header.php'; ?>
+		<?php require $root . '/inc/header.php'; ?>
 			<div id="page" class="page left">
 				<div class="col grid8 left">
 					<h1>Wildlife</h1>
@@ -19,7 +19,7 @@
 				<?php
 					$start = 1;
 					$end = 4;
-					$file = $dir . 'photography/wildlife/photos.csv';
+					$file = $root . '/photography/wildlife/photos.csv';
 
 					loadPhotos($start, $end, $file);
 				?>
@@ -28,7 +28,7 @@
 				</div>
 				<script>var photofile = '../photography/wildlife/photos.csv', photoStart = 1, photoEnd = 3;</script>
 			</div>
-		<?php require $dir . 'inc/footer.php'; ?>
+		<?php require $root . '/inc/footer.php'; ?>
 		</div>
 	</body>
 </html>
