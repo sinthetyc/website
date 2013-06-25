@@ -145,10 +145,11 @@ function getPage(url, direction){
 		if(!direction) crumbs.push({path:window.location.pathname});
 		
 		var pageData = $(data).find('#page').html(),
-			pageTitle = $(data).find('title').html();
+			pageTitle = $(data).filter('title').text();
 		
 		if(origPop) origPop = !origPop;
 		history.pushState({}, "", url);
+		document.title = pageTitle;
 		
 		$('#nextpage').html(pageData);
 		$('#page').hide("slide", {direction: hide}, fxSlow, function(){
