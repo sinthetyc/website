@@ -100,9 +100,10 @@ $(document).ready(function(){
 	
 	$('body').on('click', '#load > .more', function(e){
 		var url = '';
+
 		if(flickr){
 			page += 1;
-			url = '/inc/lazyloader-flickr.php?page=' + page;
+			url = '/inc/lazyloader-flickr.php?photoset=' + photoset + '&page=' + page;
 		} else {
 			photoStart += 4;
 			photoEnd = photoStart + 4;
@@ -138,7 +139,10 @@ function getPage(url, direction){
 	transition = true;
 	
 	var hide = direction ? 'right' : 'left',
-		show = direction ? 'left' : 'right';
+		show = direction ? 'left' : 'right',
+		cinemaViewHTML = '<div id="cinemaView" class="loading"></div>';
+		
+	$('body').append(cinemaViewHTML);
 	
 	$('#pageHeader').after('<div id="nextpage" class="page left">');
 	$.get(url, function(data){
@@ -150,6 +154,8 @@ function getPage(url, direction){
 		if(origPop) origPop = !origPop;
 		history.pushState({}, "", url);
 		document.title = pageTitle;
+		
+		$('#cinemaView').remove();
 		
 		$('#nextpage').html(pageData);
 		$('#page').hide("slide", {direction: hide}, fxSlow, function(){

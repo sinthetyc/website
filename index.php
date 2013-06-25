@@ -19,7 +19,7 @@
 			<div class="col grid4 left clear">
 				<h2>Web Design</h2>
 				<a class="photolink" href="web/">
-					<img src="images/web-design.jpg">
+					<img src="/images/web-design.jpg">
 					<span class="seemore next">See more</span>
 				</a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
@@ -27,7 +27,7 @@
 			<div class="col grid4 left">
 				<h2>Print Design</h2>
 				<a class="photolink" href="print/">
-					<img src="images/print-design.jpg">
+					<img src="/images/print-design.jpg">
 					<span class="seemore next">See more</span>
 				</a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
@@ -35,7 +35,7 @@
 			<div class="col grid4 left">
 				<h2>Photography</h2>
 				<a class="photolink" href="photography/">
-					<img src="images/photography.jpg">
+					<img src="/images/photography.jpg">
 					<span class="seemore next">See more</span>
 				</a>
 				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>

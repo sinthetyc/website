@@ -16,12 +16,13 @@
 				</div>
                 <br class="clear" />
 				<?php
-					require $root . '/inc/lazyloader-flickr.php';
+					$photoset = '72157634288121564';
+					include $root . '/inc/lazyloader-flickr.php';
 				?>
 				<div id="load" class="col grid12 left">
 					<a class="seemore more" href="javascript:void(0);">More</a>
 				</div>
-				<script>var flickr = true</script>
+				<script>var flickr = true, photoset = '72157634288121564';</script>
 				<style>body {background-image:url(/images/landscapes.png);}</style>
 			</div>
 		<?php require $root . '/inc/footer.php'; ?>
