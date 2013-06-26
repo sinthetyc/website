@@ -10,7 +10,7 @@
 		$page = isset($_GET['page']) ? $_GET['page'] : 1;
 	}
 	if(empty($per_page)){
-		$per_page = isset($_GET['perpage']) ? $_GET['perpage'] : 8;
+		$per_page = isset($_GET['perpage']) ? $_GET['perpage'] : 12;
 	}
 	
 	$params = array(
@@ -31,7 +31,7 @@
 			$secret = $photo['secret'];
 			$photo_title = $photo['title'];
 
-			$thumb_src = 'http://farm'.$farm.'.static.flickr.com/'.$server.'/'.$photo_id.'_'.$secret.'_n.jpg';
+			$thumb_src = 'http://farm'.$farm.'.static.flickr.com/'.$server.'/'.$photo_id.'_'.$secret.'_q.jpg';
 			$image_src = 'http://farm'.$farm.'.static.flickr.com/'.$server.'/'.$photo_id.'_'.$secret.'_z.jpg';
 
 
@@ -62,9 +62,9 @@
 					'Lens'			=> 'LensInfo'
 				);
 					
-				foreach($format as $key => $value){
-					if(isset($exif[$value]))
-						$metadata .= '<p><span>' . $key . ':</span> '. $exif[$value] . '</p>';
+				foreach($format as $k => $v){
+					if(isset($exif[$v]))
+						$metadata .= '<p><span>' . $k . ':</span> '. $exif[$v] . '</p>';
 				}
 
 			} else {
@@ -77,7 +77,7 @@
 			
 			
 			// Build and return HTML.
-			echo "\t\t\t\t" . '<div class="col grid3 left">' . "\n"
+			echo "\t\t\t\t" . '<div class="col grid2 left">' . "\n"
 				. "\t\t\t\t\t" . '<a href="' . $image_src . '" class="lightbox"><img src="' . $thumb_src . '" alt="' . $photo_title . '" title="' . $photo_title . '" data-meta="' . $metadata . '"><span class="seemore zoom">Zoom</span></a>' . "\n"
 				. "\t\t\t\t" . '</div>' . "\n";
 				
@@ -136,8 +136,8 @@
 	*/
 	function pretifyEXIF($exif){
 		$result = array();
-		foreach($exif as $value){
-			$result[$value['tag']] = isset($value['clean']) ? $value['clean']['_content'] : $value['raw']['_content'];
+		foreach($exif as $v){
+			$result[$v['tag']] = isset($v['clean']) ? $v['clean']['_content'] : $v['raw']['_content'];
 		}
 		return $result;
 	}

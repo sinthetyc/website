@@ -494,6 +494,7 @@ button:hover {
 
 .loading {
 	background: rgba(34,34,34,0.75) url(../images/loading.gif) no-repeat 50% !important;
+	min-height: 100px;
 }
 
 img#slide {

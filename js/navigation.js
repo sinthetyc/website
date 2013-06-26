@@ -8,6 +8,13 @@ var crumbs = [],
 
 $(document).ready(function(){
 	
+	/*
+	$('#logo').css({ 'opacity': 0 }).animate({ 'opacity': 1 }, fxSlow, function(){
+		$('#pageFooter').css({ 'height': window.innerHeight /2 }).animate({ 'height': 38 }, 5000);
+		$('#pageHeader').css({ 'height': window.innerHeight /2 }).animate({ 'height': 100 }, 5000);
+	});
+	*/
+		
 	/* navigate */
 	$('body').on('click', '.photolink, nav a, .iconset .email', function(e){
 		e.stopPropagation();
@@ -18,13 +25,6 @@ $(document).ready(function(){
 		return false;
 	});
 
-	/*
-	$('#logo').css({ 'opacity': 0 }).animate({ 'opacity': 1 }, fxSlow, function(){
-		$('#pageFooter').css({ 'height': window.innerHeight /2 }).animate({ 'height': 38 }, 5000);
-		$('#pageHeader').css({ 'height': window.innerHeight /2 }).animate({ 'height': 100 }, 5000);
-	});
-	*/
-	
 	window.onpopstate = function(e){
 		if(origPop) return false;
 		if(typeof crumbs[crumbs.length-1] === 'undefined'){
@@ -100,24 +100,8 @@ $(document).ready(function(){
 	
 	
 	$('body').on('click', '#load > .more', function(e){
-		var url = '';
-
-		if(flickr){
-			page += 1;
-			url = '/inc/lazyloader-flickr.php?photoset=' + photoset + '&page=' + page;
-		} else {
-			photoStart += 4;
-			photoEnd = photoStart + 4;
-			url = '/inc/lazyloader.php?s=' + photoStart + '&e=' + photoEnd + '&f=' + photofile;
-		}
-		$.get(url, function(data){
-			$('#load').before(data);
-			if(data.match(/<!-- eof -->/)){
-				$('.more').fadeOut(fxSlow);
-			}
-		});
+		lazyLoad();
 	});
-	
 	
 	$(window).on('scroll', function(e){
 		/*
@@ -132,6 +116,27 @@ $(document).ready(function(){
 	
 });
 
+function lazyLoad(){
+	var url = '';
+
+	//$('#load').before('<div id="loading" class="col grid12 clear left loading">&nbsp;</div>');
+	$('#load').addClass('loading');
+	if(flickr){
+		page += 1;
+		url = '/inc/lazyloader-flickr.php?photoset=' + photoset + '&page=' + page;
+	} else {
+		photoStart += 4;
+		photoEnd = photoStart + 4;
+		url = '/inc/lazyloader.php?s=' + photoStart + '&e=' + photoEnd + '&f=' + photofile;
+	}
+	$.get(url, function(data){
+		$('#load').before(data);
+		$('#load').removeClass('loading');
+		if(data.match(/<!-- eof -->/)){
+			$('.more').fadeOut(fxSlow);
+		}
+	});
+}
 
 function getPage(url, direction){
 	
