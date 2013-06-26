@@ -9,7 +9,7 @@ var crumbs = [],
 $(document).ready(function(){
 	
 	/* navigate */
-	$('body').on('click', '.photolink, nav a', function(e){
+	$('body').on('click', '.photolink, nav a, .iconset .email', function(e){
 		e.stopPropagation();
 		e.preventDefault();
 
@@ -67,7 +67,8 @@ $(document).ready(function(){
 			loadSlide("prev");
 		}
 	}).on('click', '#cinemaView', function(e){
-		if(e.target.id === "slide" || e.target.className.match(/(next|prev)/)){
+		console.log(e);
+		if(e.target.id === "slide" || e.target.id === "metadata" || e.target.className.match(/(next|prev)/)){
 			return false;
 		}
 		closeCinemaView();
@@ -190,18 +191,13 @@ function loadSlide(target){
 	}
 	
 	var title = el.children[0].getAttribute('title'),
-		metadata = el.children[0].dataset.meta.split("|");
+		metadataHTML = el.children[0].dataset.meta;
 	
 	$('.current').removeClass('current');
 	$(el).addClass('current');
 	
 	var codebox = (el.href.match(/.html/ig) || []).length === 1,
-		cinemaViewHTML = codebox ? '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><iframe id="slide" frameborder="0" scrolling="no"></iframe><ul id="metadata"></ul><span class="next">&nbsp;</span></div></div>' : '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><img id="slide"/><ul id="metadata"></ul><span class="next">&nbsp;</span></div></div>',
-		metadataHTML = '';
-	
-	for(var i = 0; i < metadata.length; i++){
-		metadataHTML += '<li>' + metadata[i] + '</li>';
-	}
+		cinemaViewHTML = codebox ? '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><iframe id="slide" frameborder="0" scrolling="no"></iframe><div id="metadata"></div><span class="next">&nbsp;</span></div></div>' : '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><img id="slide"/><div id="metadata"></div><span class="next">&nbsp;</span></div></div>';
 	
 	if($('#cinemaView').length < 1){
 		$('body').append(cinemaViewHTML);

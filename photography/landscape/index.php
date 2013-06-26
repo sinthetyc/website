@@ -15,11 +15,11 @@
 					<h1>Landscape</h1>
 					<p>Hills, trees and assorted things.</p>
 				</div>
-                <br class="clear" />
-				<?php
-					$photoset = '72157634323445076';
-					include $root . '/inc/lazyloader-flickr.php';
-				?>
+				<br class="clear" />
+<?php
+	$photoset = '72157634323445076';
+	include $root . '/inc/lazyloader-flickr.php';
+?>
 				<div id="load" class="col grid12 left">
 					<a class="seemore more" href="javascript:void(0);">More</a>
 				</div>
