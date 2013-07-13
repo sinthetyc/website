@@ -23,9 +23,6 @@
 
 					loadPhotos($start, $end, $file);
 				?>
-				<div id="load" class="col grid12 left">
-					<a class="seemore more" href="javascript:void(0);">More</a>
-				</div>
 				<script>var photofile = '../web/laboratory/photos.csv', photoStart = 1, photoEnd = 3;</script>
 			</div>
 		</div>
