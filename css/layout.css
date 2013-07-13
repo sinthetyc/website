@@ -224,13 +224,10 @@ nav a {
 
 
 
-nav a:hover, .hover{
+nav a:hover, .current, .hover{
 	color:#222222;
 	font-weight:700;
 	letter-spacing:-0.75px;
-}
-
-nav a.current{
 }
 
 .subnav{

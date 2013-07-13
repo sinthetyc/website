@@ -3,6 +3,8 @@
 	<?php
 		$root = $_SERVER['DOCUMENT_ROOT'];
 		$page_title = "Photogrpahy - Miscellaneous | Pixel Monkey";
+		$page = 'photography/misc';
+		
 		$add_script = array('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js');
 		require $root . '/inc/head.php';
 	?>
