@@ -4,17 +4,11 @@ var crumbs = [],
 	fxFast = 100,
 	fxMedium = 200,
 	fxSlow = 300,
-	page = 1;
+	page = 1,
+	xhr = null;
 
 $(document).ready(function(){
-	
-	/*
-	$('#logo').css({ 'opacity': 0 }).animate({ 'opacity': 1 }, fxSlow, function(){
-		$('#pageFooter').css({ 'height': window.innerHeight /2 }).animate({ 'height': 38 }, 5000);
-		$('#pageHeader').css({ 'height': window.innerHeight /2 }).animate({ 'height': 100 }, 5000);
-	});
-	*/
-		
+
 	/* navigate */
 	$('body').on('click', '.photolink, nav a, .iconset .email', function(e){
 		e.stopPropagation();
@@ -138,20 +132,32 @@ function lazyLoad(){
 	});
 }
 
+function flickrLazyLoad(photoset){
+	//$.getJSON('/inc/lazyloader-flickr.php?func=getPhotoSet&photoset=' + photoset, function(data){
+	//	alert('test');
+	//});
+}
+
+
 function getPage(url, direction){
 	
-	if(transition || url === 'undefined') return false;
+	if(url === 'undefined') return false;
 	
-	transition = true;
-	
-	var hide = direction ? 'right' : 'left',
-		show = direction ? 'left' : 'right',
+	var hide = direction ? 'down' : 'up',
+		show = direction ? 'up' : 'down',
 		cinemaViewHTML = '<div id="cinemaView" class="loading"></div>';
-		
-	$('body').append(cinemaViewHTML);
+	
+	if(xhr !== null){
+		xhr.abort();
+		xhr = null;
+	}
+	
+	if(document.getElementById('cinemaView') === null){
+		$('body').append(cinemaViewHTML);
+	}
 	
 	$('#pageHeader').after('<div id="nextpage" class="page left">');
-	$.get(url, function(data){
+	xhr = $.get(url, function(data){
 		if(!direction) crumbs.push({path:window.location.pathname});
 		
 		var pageData = $(data).find('#page').html(),
@@ -172,7 +178,7 @@ function getPage(url, direction){
 			});
 		});
 	}).fail(function(){
-		transition = false;
+		xhr = null;
 		console.log('Under Construction');
 	});
 }
@@ -216,7 +222,7 @@ function loadSlide(target){
 	
 	$('#lightbox').animate({'left': offsetLeft}, fxSlow, function(){
 		$('#cinemaView').addClass('loading');
-		$(this).css({'left': first ? offsetLeft : -offsetLeft}).addClass('loading');
+		$(this).css({'left': first ? offsetLeft : -offsetLeft});
 		$('#slide').attr('src', el.href).on('load', function(e){
 			var width = (codebox ? e.target.offsetWidth : e.target.width) + 80,
 				height = (codebox ? e.target.offsetHeight : e.target.height),

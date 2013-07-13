@@ -28,7 +28,6 @@
 				</div>
 				<script>var photofile = '../photography/wildlife/photos.csv', photoStart = 1, photoEnd = 3, flickr = false;</script>
 			</div>
-		<?php require $root . '/inc/footer.php'; ?>
 		</div>
 	</body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 
+/*
 echo '
 			<footer id="pageFooter" class="fullGrid left">
 				<div class="col grid12 left">
@@ -8,5 +9,5 @@ echo '
 				</div>
 			</footer>
 ';
-
+*/
 ?>

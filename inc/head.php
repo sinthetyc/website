@@ -26,6 +26,7 @@ echo '<head>
 	--------------------------------- */
 	//JQuery -- all pages.
 	echo '		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>' . $n;
+	//echo '		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>' . $n;
 	echo '		<script src="/js/navigation.js"></script>' . $n;
 
 	//Include additional page scripts if required.

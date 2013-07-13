@@ -26,7 +26,6 @@
 				<script>var flickr = true, photoset = '72157634323445076';</script>
 				<style>body {background-image:url(/images/landscapes.png);}</style>
 			</div>
-		<?php require $root . '/inc/footer.php'; ?>
 		</div>
 	</body>
 </html>

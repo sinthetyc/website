@@ -13,11 +13,16 @@
 		$per_page = isset($_GET['perpage']) ? $_GET['perpage'] : 12;
 	}
 	
+	/*if(isset($_GET['func']) && $_GET['func'] == 'getPhotoSet'){
+		getPhotoSet($photoset);
+		exit;
+	}*/
+		
 	$params = array(
 		'method'		=> 'flickr.photosets.getPhotos',
 		'photoset_id'	=> $photoset,
 		'per_page'		=> $per_page,
-		'page'			=> $page,
+		'page'			=> $page
 	);
 
 	if ($rsp = flickr($params)) {
@@ -82,21 +87,71 @@
 				. "\t\t\t\t" . '</div>' . "\n";
 				
 		} 
+
+		if(count($photos) < $per_page){
+			echo('<!-- eof -->');
+		}
+
 	} else {
 		echo('<!-- eof -->');
 	}
 	
-	if(count($photos) < $per_page){
-		echo('<!-- eof -->');
+	
+	
+	/*
+		Return JSON Photoset.
+		
+	*/	
+	function getPhotoSet($photoset, $page = 1, $per_page = 12){
+		header("Content-Type: application/json");
+	
+		$params = array(
+			'method'		=> 'flickr.photosets.getPhotos',
+			'photoset_id'	=> $photoset,
+			'per_page'		=> $per_page,
+			'page'			=> $page
+		);
+
+		if ($rsp = flickr($params)) {
+
+			echo "{\n\t'photos': [\n";
+		
+			$photos = $rsp["photoset"]["photo"];
+			
+			$count = 1;
+			
+			foreach($photos as $photo) {
+				$farm = $photo['farm'];
+				$server = $photo['server'];
+				$photo_id = $photo['id'];
+				$secret = $photo['secret'];
+				$photo_title = $photo['title'];
+
+				$thumb_src = 'http://farm'.$farm.'.static.flickr.com/'.$server.'/'.$photo_id.'_'.$secret.'_q.jpg';
+				$image_src = 'http://farm'.$farm.'.static.flickr.com/'.$server.'/'.$photo_id.'_'.$secret.'_z.jpg';
+
+				echo "\t\t{\n";
+				echo "\t\t\t'id': '$photo_id',\n";
+				echo "\t\t\t'thumb': '$thumb_src',\n";
+				echo "\t\t\t'image': '$image_src',\n";
+				echo "\t\t\t'title': '$photo_title'\n";
+				echo "\t\t" . ($count == count($photos) ? "}\n" : "},\n");
+				
+				$count++;
+			}
+			
+			echo "\n\t]\n}";
+		} else {
+			echo "{\n\t'error': 'Failed to load photoset.'\n}";
+		}
 	}
 	
-	
+		
 	/*
 		Flickr API calling function.
 		$params - array of settings for API.
 		
 	*/
-	
 	function flickr($params, $timeout = 5){
 		$api_key = 'bd605093e82c4d07b92fab25a4d68e00';
 		

@@ -11,23 +11,21 @@
 		<div id="container">
 		<?php require $root . '/inc/header.php'; ?>
 		
-		<div id="page" class="page left">
-			<div class="col grid8 left">
-				<h1>Contact Pixel Monkey</h1>
-				<p>Web design, front-end development, print design and photography.  Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
+			<div id="page" class="page left">
+				<div class="col grid8 left">
+					<h1>Contact Pixel Monkey</h1>
+					<p>Web design, front-end development, print design and photography.  Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
+				</div>
+				<div class="col grid8 left">
+					<h2>Contact</h2>
+					<p>Contact form comming soon</p>
+					<!--form id="contact">
+						<label for="name">Name:</label><input id="name" type="text"/>
+						<label for="email">Email:</label><input id="email" type="text" />
+						<label for="comments">Questions:</label><textarea id="comments"></textarea>
+					</form-->
+				</div>
 			</div>
-			<div class="col grid8 left">
-				<h2>Contact</h2>
-                <p>Contact form comming soon</p>
-                <!--form id="contact">
-                	<label for="name">Name:</label><input id="name" type="text"/>
-                    <label for="email">Email:</label><input id="email" type="text" />
-                    <label for="comments">Questions:</label><textarea id="comments"></textarea>
-                </form-->
-			</div>
-		</div>
-		
-		<?php require $root . '/inc/footer.php'; ?>
 		</div>
 	</body>
 </html>

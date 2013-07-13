@@ -11,29 +11,28 @@
 		<div id="container">
 		<?php require $root . '/inc/header.php'; ?>
 		
-		<div id="page" class="page left">
-			<div class="col grid8 left">
-				<h1>Print Design</h1>
-				<p>Web design, front-end development, print design and photography.  Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
+			<div id="page" class="page left">
+				<div class="col grid8 left">
+					<h1>Print Design</h1>
+					<p>Web design, front-end development, print design and photography.  Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
+				</div>
+				<div class="col grid6 left clear">
+					<h2>Corporate ID</h2>
+					<a class="photolink" href="/print/corporate-id/">
+						<img src="../images/web-design.jpg">
+						<span class="seemore next">See more</span>
+					</a>
+					<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
+				</div>
+				<div class="col grid6 left">
+					<h2>T-Shirt Design</h2>
+					<a class="photolink" href="/print/t-shirt/">
+						<img src="../images/print-design.jpg">
+						<span class="seemore next">See more</span>
+					</a>
+					<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
+				</div>
 			</div>
-			<div class="col grid6 left clear">
-				<h2>Corporate ID</h2>
-				<a class="photolink" href="/print/corporate-id/">
-					<img src="../images/web-design.jpg">
-					<span class="seemore next">See more</span>
-				</a>
-				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-			</div>
-			<div class="col grid6 left">
-				<h2>T-Shirt Design</h2>
-				<a class="photolink" href="/print/t-shirt/">
-					<img src="../images/print-design.jpg">
-					<span class="seemore next">See more</span>
-				</a>
-				<p>Lorem ipsum dolor sit amet, elit saepe inimicus usu cu. Ad impetus nostrud duo, ne eius vitae percipit duo.</p>
-			</div>
-		</div>
-		<?php require $root . '/inc/footer.php'; ?>
 		</div>
 	</body>
 </html>
