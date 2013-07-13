@@ -92,50 +92,52 @@ $(document).ready(function(){
 		$('#lightbox').center();
 	};
 	
-	
-	$('body').on('click', '#load > .more', function(e){
-		lazyLoad();
-	});
-	
-	$(window).on('scroll', function(e){
-		/*
-		if( $(window).scrollTop() == $(document).height() - $(window).height() ){
-			$.get('/inc/lazyloader.php?s=1&e=4&f=../photography/wildlife/photos.csv', function(data){
-				$('#page').append(data);
-			});
-		}
-		*/
-	});
-	
-	
 });
 
+/*
 function lazyLoad(){
 	var url = '';
 
-	//$('#load').before('<div id="loading" class="col grid12 clear left loading">&nbsp;</div>');
 	$('#load').addClass('loading');
 	if(flickr){
 		page += 1;
-		url = '/inc/lazyloader-flickr.php?photoset=' + photoset + '&page=' + page;
+		//url = '/inc/lazyloader-flickr.php?photoset=' + photoset + '&page=' + page;
+		flickrLazyLoad();
 	} else {
 		photoStart += 4;
 		photoEnd = photoStart + 4;
 		url = '/inc/lazyloader.php?s=' + photoStart + '&e=' + photoEnd + '&f=' + photofile;
+		$.get(url, function(data){
+			$('#load').before(data);
+			$('#load').removeClass('loading');
+			if(data.match(/<!-- eof -->/)){
+				$('.more').fadeOut(fxSlow);
+			}
+		});
 	}
-	$.get(url, function(data){
-		$('#load').before(data);
-		$('#load').removeClass('loading');
-		if(data.match(/<!-- eof -->/)){
-			$('.more').fadeOut(fxSlow);
-		}
-	});
+}
+*/
+
+function flickrLazyLoad(){
+	var photos = {};
+	//$('document').ready( function(){
+		$.getJSON('/inc/lazyloader-flickr.php?func=getPhotoSet&photoset=' + photoset, function(data){
+			photos = data["photos"];
+			
+			for(var p in photos){
+				var photo = photos[p],
+					imageHTML = '<div class="col grid2 left"><a href="' + photo.image + '" class="lightbox"><img src="' + photo.thumb + '" alt="' + photo.title + '" title="'  + photo.title +  '"data-id="' + photo.id + '" data-secret="' + photo.secret + '"><span class="seemore zoom">Zoom</span></a></div>';
+				$('#page').append(imageHTML);
+			}
+		});
+	//});
 }
 
-function flickrLazyLoad(photoset){
-	//$.getJSON('/inc/lazyloader-flickr.php?func=getPhotoSet&photoset=' + photoset, function(data){
-	//	alert('test');
-	//});
+
+function flickrEXIFData(id, secret){
+	$.get('/inc/lazyloader-flickr.php?func=getPhotoEXIF&photoid=' + id + '&secret=' + secret, function(data){
+		$('#metadata').html(data);
+	});
 }
 
 
@@ -202,8 +204,9 @@ function loadSlide(target){
 	}
 	
 	var title = el.children[0].getAttribute('title'),
-		metadataHTML = el.children[0].dataset.meta;
-	
+		id = el.children[0].dataset.id,
+		secret = el.children[0].dataset.secret;
+		
 	$('.current').removeClass('current');
 	$(el).addClass('current');
 	
@@ -222,16 +225,18 @@ function loadSlide(target){
 	
 	$('#lightbox').animate({'left': offsetLeft}, fxSlow, function(){
 		$('#cinemaView').addClass('loading');
+		
+		$('#metadata').html('<p>Loading...</p>');
+		flickrEXIFData(id,secret);
+		
 		$(this).css({'left': first ? offsetLeft : -offsetLeft});
 		$('#slide').attr('src', el.href).on('load', function(e){
 			var width = (codebox ? e.target.offsetWidth : e.target.width) + 80,
 				height = (codebox ? e.target.offsetHeight : e.target.height),
 				left = (window.innerWidth / 2) - (width / 2),
 				top = (window.innerHeight / 2) - (height / 2);
-				
-			$('#cinemaView').removeClass('loading');
 			
-			$('#metadata').html(metadataHTML);
+			$('#cinemaView').removeClass('loading');
 			$('#lightbox').animate({
 				'left': left,
 				'top': top,

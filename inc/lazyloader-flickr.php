@@ -6,18 +6,27 @@
 	if(empty($photoset)){
 		$photoset = isset($_GET['photoset']) ? $_GET['photoset'] : '72157634288121564';
 	}
+	/*
 	if(empty($page)){
 		$page = isset($_GET['page']) ? $_GET['page'] : 1;
 	}
 	if(empty($per_page)){
 		$per_page = isset($_GET['perpage']) ? $_GET['perpage'] : 12;
 	}
+	*/
 	
-	/*if(isset($_GET['func']) && $_GET['func'] == 'getPhotoSet'){
-		getPhotoSet($photoset);
-		exit;
-	}*/
-		
+	if(isset($_GET['func'])){
+		if($_GET['func'] == 'getPhotoSet'){
+			getPhotoSet($photoset);
+			return true;
+		}elseif($_GET['func'] == 'getPhotoEXIF'){
+			if(isset($_GET['photoid']) && isset($_GET['secret'])){
+				getPhotoEXIF($_GET['photoid'], $_GET['secret']);
+			}
+			return true;
+		}
+	}
+/*		
 	$params = array(
 		'method'		=> 'flickr.photosets.getPhotos',
 		'photoset_id'	=> $photoset,
@@ -95,26 +104,24 @@
 	} else {
 		echo('<!-- eof -->');
 	}
-	
+*/
 	
 	
 	/*
 		Return JSON Photoset.
 		
 	*/	
-	function getPhotoSet($photoset, $page = 1, $per_page = 12){
+	function getPhotoSet($photoset){
 		header("Content-Type: application/json");
 	
 		$params = array(
 			'method'		=> 'flickr.photosets.getPhotos',
 			'photoset_id'	=> $photoset,
-			'per_page'		=> $per_page,
-			'page'			=> $page
 		);
 
 		if ($rsp = flickr($params)) {
 
-			echo "{\n\t'photos': [\n";
+			echo "{\n\t\"photos\": [\n";
 		
 			$photos = $rsp["photoset"]["photo"];
 			
@@ -131,10 +138,11 @@
 				$image_src = 'http://farm'.$farm.'.static.flickr.com/'.$server.'/'.$photo_id.'_'.$secret.'_z.jpg';
 
 				echo "\t\t{\n";
-				echo "\t\t\t'id': '$photo_id',\n";
-				echo "\t\t\t'thumb': '$thumb_src',\n";
-				echo "\t\t\t'image': '$image_src',\n";
-				echo "\t\t\t'title': '$photo_title'\n";
+				echo "\t\t\t\"id\": \"$photo_id\",\n";
+				echo "\t\t\t\"thumb\": \"$thumb_src\",\n";
+				echo "\t\t\t\"image\": \"$image_src\",\n";
+				echo "\t\t\t\"title\": \"$photo_title\",\n";
+				echo "\t\t\t\"secret\": \"$secret\"\n";
 				echo "\t\t" . ($count == count($photos) ? "}\n" : "},\n");
 				
 				$count++;
@@ -142,11 +150,65 @@
 			
 			echo "\n\t]\n}";
 		} else {
-			echo "{\n\t'error': 'Failed to load photoset.'\n}";
+			echo "{\n\t\"error\": \"Failed to load photoset.\"\n}";
 		}
 	}
 	
+	/*
+		Return JSON EXIF data.
 		
+	*/	
+	function getPhotoEXIF($photo_id, $secret){
+		//header("Content-Type: application/json");
+		//html will do for now
+		
+		// Get photo EXIF for metadata overlay.  api: flickr.photos.getExif
+		$metadata = '';
+		$metadata_short = '';
+		$metadata_long = '';
+		
+		$params = array(
+			'method'	=> 'flickr.photos.getExif',
+			'photo_id'	=> $photo_id,
+			'secret'	=> $secret
+		);
+		
+		if($rsp = flickr($params)){
+			// Start JSON.
+			// echo "{\n\t\"photos\": [\n";
+			
+			// Build metadata string.
+			// TODO: Short metadata and long metadata.
+			$exif = pretifyEXIF($rsp['photo']['exif']);
+
+			// Display format.
+			$format = array(
+				'Camera'		=> 'Model',
+				'Exposure'		=> 'ExposureTime',
+				'Aperture'		=> 'FNumber',
+				'ISO Speed'		=> 'ISO',
+				'White Balance'	=> 'LightSource',
+				'Focal Length'	=> 'FocalLength',
+				'Lens'			=> 'LensInfo'
+			);
+				
+			foreach($format as $k => $v){
+				if(isset($exif[$v]))
+					$metadata .= '<p><span>' . $k . ':</span> '. $exif[$v] . '</p>';
+			}
+
+		} else {
+			$metadata = 'EXIF not available.';
+		}
+		
+		if($metadata == ''){
+			$metadata = 'EXIF not available.';
+		}
+		
+		echo $metadata;
+	}
+	
+	
 	/*
 		Flickr API calling function.
 		$params - array of settings for API.
