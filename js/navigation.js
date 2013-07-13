@@ -5,12 +5,20 @@ var crumbs = [],
 	fxMedium = 200,
 	fxSlow = 300,
 	page = 1,
-	xhr = null;
+	xhr = null.
+	mobile = false;
 
 $(document).ready(function(){
-
+	
+	if($('.indicator').css('display') == 'none'){
+		mobile = true;
+	}
+	
 	/* navigate */
 	$('body').on('click', '.photolink, nav a, .iconset .email', function(e){
+		if(mobile){
+			return true;
+		}
 		e.stopPropagation();
 		e.preventDefault();
 

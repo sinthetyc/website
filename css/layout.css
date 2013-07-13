@@ -685,6 +685,8 @@ iframe#slide {
 		width:100%;
 		clear:left;
 	}
+	
+	.grid2 { width: 44% }
 	.grid3, .grid4, .grid6, .grid8 { width: 94% }
 
 	.seemore {
