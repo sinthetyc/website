@@ -5,13 +5,17 @@ var crumbs = [],
 	fxMedium = 200,
 	fxSlow = 300,
 	page = 1,
-	xhr = null.
+	xhr = null,
 	mobile = false;
 
 $(document).ready(function(){
 	
 	if($('.indicator').css('display') == 'none'){
 		mobile = true;
+	}
+	
+	if($(window).innerHeight() < 600 && !mobile){
+		$('#pageHeader').css({ 'position': 'absolute' });
 	}
 	
 	/* navigate */

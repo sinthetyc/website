@@ -136,7 +136,7 @@ input, select {
 body {background:url(../images/pattern.png) #333;}
 
 .page {
-	width:80%;
+	width:85%;
 	height:100%;
 	min-height:600px;
 	padding:35px 0 10px 160px;
@@ -198,12 +198,6 @@ header, footer {
 	text-transform:uppercase;
 }
 
-/*
-.home:hover{
-	color:rgba(0,0,0,0.7);
-	background:rgba(218,218,218,0.9);
-}
-*/
 
 nav {
 	width:100%;
@@ -221,8 +215,6 @@ nav a {
 	text-transform:uppercase;
 	background:#eee;
 }
-
-
 
 nav a:hover, .current, .hover{
 	color:#222222;
@@ -269,36 +261,6 @@ nav a, .subnav a {
 }
 
 
-/*
-nav a:after {
-	content: "";
-	position: absolute;
-	background:#222;
-    height: 1px;
-    width: 20px;
-	top: 33px;
-	left: 0;
-}
-
-.subnav:after{
-	content:"";
-	position:absolute;
-	left:15px;
-	top:0;
-	width:1px;
-	background:#222;
-	height:68px;
-}
-
-.subnav a:after{
-	left:15px;
-	top:33px;
-	width:5px;
-}
-*/
-
-
-
 .indicator {
 	width:160px;
 	float:left;
@@ -329,13 +291,15 @@ nav a:after {
 h1 {
 	font-size: 3em;
 	font-weight: normal;
-	margin-bottom: 0.25em;
+	margin-bottom: 0.5em;
+	line-height:1;
 }
 
 h2 {
 	font-size: 1.5em;
 	font-weight: normal;
 	margin-bottom: 1em;
+	line-height:1;
 }
 p {
 	margin-bottom:1.5em;
@@ -638,6 +602,14 @@ iframe#slide {
 }
 */
 
+@media only screen and (max-width: 1060px) {
+	.page { width:80%; }
+}
+
+@media only screen and (max-width: 1024px) {
+	.grid2 { width:19%; }
+}
+
 
 @media only screen and (max-width: 820px) {
 	header, #pageHeader ul, nav, nav li, nav a, .subnav li, .subnav a {
@@ -661,6 +633,20 @@ iframe#slide {
 	}
 }
 
+@media only screen and (max-width: 795px) {
+	.grid2 { width: 40% }
+	.grid3, .grid4, .grid6, .grid8 { width: 84% }
+}
+
+@media only screen and (max-width: 670px) {
+	.grid2 { width: 40% }
+	.grid3, .grid4, .grid6, .grid8 { width: 80% }
+}
+
+@media only screen and (max-width: 670px) {
+	.grid2 { width: 36% }
+}
+
 @media only screen and (max-width: 480px) {
 	#pageHeader, #pageFooter, .copyright {
 		width:100%;
@@ -674,9 +660,7 @@ iframe#slide {
 	
 	.indicator{display:none;}
 	
-	.page{ padding: 0px; width:100%; }
-	
-	
+	.page{ padding: 20px 0 0 0; width:100%; }
 	
 	.subnav li {
 		width:100%;
