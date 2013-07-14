@@ -132,17 +132,15 @@ function lazyLoad(){
 
 function flickrLazyLoad(){
 	var photos = {};
-	//$('document').ready( function(){
-		$.getJSON('/inc/lazyloader-flickr.php?func=getPhotoSet&photoset=' + photoset, function(data){
-			photos = data["photos"];
-			
-			for(var p in photos){
-				var photo = photos[p],
-					imageHTML = '<div class="col grid2 left"><a href="' + photo.image + '" class="lightbox"><img src="' + photo.thumb + '" alt="' + photo.title + '" title="'  + photo.title +  '"data-id="' + photo.id + '" data-secret="' + photo.secret + '"><span class="seemore zoom">Zoom</span></a></div>';
-				$('#page').append(imageHTML);
-			}
-		});
-	//});
+	$.getJSON('/inc/lazyloader-flickr.php?func=getPhotoSet&photoset=' + photoset, function(data){
+		photos = data["photos"];
+		
+		for(var p in photos){
+			var photo = photos[p],
+				imageHTML = '<div class="col grid2 left"><a href="' + photo.image + '" class="lightbox"><img src="' + photo.thumb + '" alt="' + photo.title + '" title="'  + photo.title +  '"data-id="' + photo.id + '" data-secret="' + photo.secret + '"><span class="seemore zoom">Zoom</span></a></div>';
+			$('#anchor').append(imageHTML);
+		}
+	});
 }
 
 
@@ -174,7 +172,8 @@ function getPage(url, direction){
 	xhr = $.get(url, function(data){
 		if(!direction) crumbs.push({path:window.location.pathname});
 		
-		var pageData = $(data).find('#page').html(),
+		var navigation = $(data).find('#pageHeader').html(),
+			pageData = $(data).find('#page').html(),
 			pageTitle = $(data).filter('title').text();
 		
 		if(origPop) origPop = !origPop;
@@ -183,6 +182,7 @@ function getPage(url, direction){
 		
 		$('#cinemaView').remove();
 		
+		$('#pageHeader').html(navigation);
 		$('#nextpage').html(pageData);
 		$('#page').hide("slide", {direction: hide}, fxSlow, function(){
 			$('#nextpage').show("slide", {direction: show}, fxSlow, function(){
@@ -259,8 +259,6 @@ function loadSlide(target){
 			});
 		});
 	})
-
-	
 }
 
 function closeCinemaView(){

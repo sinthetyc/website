@@ -16,11 +16,12 @@
 					<h1>Miscellaneous</h1>
 					<p>All the other stuff.</p>
 				</div>
-				<br class="clear" />
+				<div id="anchor" class="clear">
 <?php
 //	$photoset = '72157634288121564';
 //	include $root . '/inc/lazyloader-flickr.php';
 ?>
+				</div>
 				<script>var flickr = true, photoset = '72157634288121564'; flickrLazyLoad();</script>
 				<style>body {background-image:url(/images/landscapes.png);}</style>
 			</div>
