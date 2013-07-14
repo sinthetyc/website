@@ -172,7 +172,7 @@ function getPage(url, direction){
 	xhr = $.get(url, function(data){
 		if(!direction) crumbs.push({path:window.location.pathname});
 		
-		var navigation = $(data).find('#pageHeader').html(),
+		var navigation = $(data).find('#pageHeader nav').html(),
 			pageData = $(data).find('#page').html(),
 			pageTitle = $(data).filter('title').text();
 		
@@ -182,7 +182,7 @@ function getPage(url, direction){
 		
 		$('#cinemaView').remove();
 		
-		$('#pageHeader').html(navigation);
+		$('#pageHeader nav').html(navigation);
 		$('#nextpage').html(pageData);
 		$('#page').hide("slide", {direction: hide}, fxSlow, function(){
 			$('#nextpage').show("slide", {direction: show}, fxSlow, function(){
