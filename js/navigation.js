@@ -1,15 +1,82 @@
-var crumbs = [],
-	origPop = true,
-	transition = false,
-	fxFast = 100,
-	fxMedium = 200,
-	fxSlow = 300,
-	page = 1,
-	xhr = null,
-	mobile = false;
-
-$(document).ready(function(){
+/*
+ *	TristanBrehaut.com AKA Pixel Monkey.
+ 
+ 
+	The story so far...
+ 
+	As a professional code spelunker with an undeniable penchant for exploring the places behind the veil of the everyday internet
+	you decide to venture forth into gloomy domain of the Javascript King, Pixel Monkey.
 	
+	Choose your character:
+		a.	Code Knight		-	The Code Knight is lion-hearted, never afraid to take a side in a battle and always
+								on the lookout for a maiden in distress. Code comes and goes, but the kingdom remains
+								the same. Built like a brick shit-house you are always armed with a quick, tacticle
+								wit-blade and the enchanted shield of HTML5.
+		
+		b.	Code Wizard		-	As a Code Wizard, a practitioner of the hidden arts, you have chosen a life of magic study.
+								Google.com is your magic tome and codepen.com your alchemical laboratory.  With a keen
+								mind the underlying weakness of any challenge is quickly discovered and exploited to your benefit.
+		
+		c.	Code Priest		-	Gentle by nature but able to call forth the vast, assertive powers of console.log() to
+								banish even the most ephemeral of bugs standing in the way of a peacefull existence.  As a Code
+								Priest you always have your console staff at hand and you have spent many years learning
+								to decipher many of the more esoteric warning signs of the internet.
+
+	Note:	As you read, some storyline and decisions will be based around your class.  When you see this magic symbol ( c? ) please
+			read the string with your corresponding class key.  I.E. K - Knight, W - Wizzard, P - Priest.
+								
+	Inventory: You are carrying...
+*/
+
+var crumbs = [],				// A bag of golden crumbs, because even the most experience traveller knows that sometimes you need help to retrace your steps.
+	origPop = true,				// A small spell to protect the contents of your bread crumb bag because theives are always looking for a quick buck.
+	transition = false,			// A transition detector, so as not to get caught in any kinetic traps.
+	fxFast = 100,				// A fast effect modifier (Light).  These can be cast as a buff on other spells and powers to speed them up, or slow them down.
+	fxMedium = 200,				// A medium effect modifier (Fire).
+	fxSlow = 300,				// A slow effect modifier (Ice).
+	page = 1,					// A map of your current environment.
+	xhr = null,					// An soul gem shaped like a tiny bust of Tim Burners-Lee. The gem is old-school CRT green and is currently empty.
+	mobile = false;				// You may or may not be carrying a mobile phone too, for now we'll assume your not.
+
+	
+/*
+	Part 1:
+		
+		After severl days travel you are finally approaching the foothills of a vast mountain range known by the locals as 'The Dark Tops'.
+		Peering upwards through the gloom towards the ragged horizon you can make out amongst the clouds your destination perched atop an
+		impossible precipice. The Castle of the Pixel Monkey.
+		
+		Your mind races with thoughts of ... 
+		( c?  K: "fame, fortune and distressed maidens"; W: "new discoveries of unfathomable power"; P: "bringing peace and light to another dark place")
+		...	as you begin the climb to the hidden entrance described by an ancient, worn map you ...
+		( c? K: "extracted from a demon infested dungeon."; W: "discovered amongst the pages of an ancient work on pixel manipulation.",
+		P:"found in the grip of a deceased monk laying on your doorstep." )
+
+		You approach the location marked on the map and discover what appears to be an ancient stone doorway.  The portal is heavily overgrown,
+		the symbols carved around the entrance are barely ledgible, clearly ravaged by the eons.  You inspect the map looking for a clue
+		to help you gain entrance to whatever lies beyond. On the back of the map, written in what appears to be troll blood, is a single symbol.
+		Scanning the exterior of entranceway you find the same symbol, it's worn but recognisable.  You approach the magic seal and ...
+		( c? K: "jam the magic blade of CSS3 into a small crack next to it and apply pressure."; W: "consult your ancient tome of all knowing.  Discovering
+		the symbol you speak the ancient word."; P:"analyse the magic field for weaknesses.  You identify a undifined variable and give it a true value."; )
+		
+		There is a deep rumble from behind the stone door.  A crunch, a click, a whirr.  Dust and debris begins to fall from around the ancient entranceway.
+		Moments later the worn gate slides away to reveal a passageway behind.  The passageway is dark but appears to be dimly light by the magic field
+		that emanates from the mountain rocks.
+		
+		You decied to wait until morning before you begin your quest proper as your magic document doesn't appear to be quite ready.
+*/	
+$(document).ready(function(){
+/*	
+	Part 2:
+		You awaken refreshed.  The campfire is still warm as the sun begins to crest the distant Vale of DOM.
+		You take two steps towards the open doorway and suddenly realise you've forgotten to tell anyone where you're going!  As an experienced traveller
+		you know this is a recipe for an eternity haunting the place of your demise.
+		Roll the magic die:
+			-	If you can see the great indicator of content types you've left your phone behind, you decide to proceede anyway.
+			-	If the great indicator of content types is hidden from your view you find your phone at the verry bottom of your traveling bag.
+				You call your mum.  She tells you to be extra carefull.  You don't like to agree with her but you know she's right.
+				You proceed with extreme caution.
+*/ 
 	if($('.indicator').css('display') == 'none'){
 		mobile = true;
 	}
@@ -105,30 +172,6 @@ $(document).ready(function(){
 	};
 	
 });
-
-/*
-function lazyLoad(){
-	var url = '';
-
-	$('#load').addClass('loading');
-	if(flickr){
-		page += 1;
-		//url = '/inc/lazyloader-flickr.php?photoset=' + photoset + '&page=' + page;
-		flickrLazyLoad();
-	} else {
-		photoStart += 4;
-		photoEnd = photoStart + 4;
-		url = '/inc/lazyloader.php?s=' + photoStart + '&e=' + photoEnd + '&f=' + photofile;
-		$.get(url, function(data){
-			$('#load').before(data);
-			$('#load').removeClass('loading');
-			if(data.match(/<!-- eof -->/)){
-				$('.more').fadeOut(fxSlow);
-			}
-		});
-	}
-}
-*/
 
 function flickrLazyLoad(){
 	var photos = {};
