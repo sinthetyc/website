@@ -76,6 +76,8 @@ $(document).ready(function(){
 			-	If the great indicator of content types is hidden from your view you find your phone at the verry bottom of your traveling bag.
 				You call your mum.  She tells you to be extra carefull.  You don't like to agree with her but you know she's right.
 				You proceed with extreme caution.
+				
+	TODO:  To be continued...
 */ 
 	if($('.indicator').css('display') == 'none'){
 		mobile = true;
