@@ -5,7 +5,7 @@
 	The story so far...
  
 	As a professional code spelunker with an undeniable penchant for exploring the places behind the veil of the everyday internet
-	you decide to venture forth into gloomy domain of the Javascript King, Pixel Monkey.
+	you decide to venture forth into the gloomy domain of the Javascript King, Pixel Monkey.
 	
 	Choose your character:
 		a.	Code Knight		-	The Code Knight is lion-hearted, never afraid to take a side in a battle and always
@@ -20,7 +20,7 @@
 		c.	Code Priest		-	Gentle by nature but able to call forth the vast, assertive powers of console.log() to
 								banish even the most ephemeral of bugs standing in the way of a peacefull existence.  As a Code
 								Priest you always have your console staff at hand and you have spent many years learning
-								to decipher many of the more esoteric warning signs of the internet.
+								to decipher some of the more esoteric signs of the internet.
 
 	Note:	As you read, some storyline and decisions will be based around your class.  When you see this magic symbol ( c? ) please
 			read the string with your corresponding class key.  I.E. K - Knight, W - Wizzard, P - Priest.
@@ -28,7 +28,7 @@
 	Inventory: You are carrying...
 */
 
-var crumbs = [],				// A bag of golden crumbs, because even the most experience traveller knows that sometimes you need help to retrace your steps.
+var crumbs = [],				// A bag of golden crumbs, because even the most experienced traveller knows that sometimes you need help to retrace your steps.
 	origPop = true,				// A small spell to protect the contents of your bread crumb bag because theives are always looking for a quick buck.
 	transition = false,			// A transition detector, so as not to get caught in any kinetic traps.
 	fxFast = 100,				// A fast effect modifier (Light).  These can be cast as a buff on other spells and powers to speed them up, or slow them down.
@@ -42,8 +42,8 @@ var crumbs = [],				// A bag of golden crumbs, because even the most experience 
 /*
 	Part 1:
 		
-		After severl days travel you are finally approaching the foothills of a vast mountain range known by the locals as 'The Dark Tops'.
-		Peering upwards through the gloom towards the ragged horizon you can make out amongst the clouds your destination perched atop an
+		After several days travel you are finally approaching the foothills of a vast mountain range known by the locals as 'The Dark Tops'.
+		Peering upwards through the gloom towards the ragged horizon you can make out, amongst the clouds, your destination perched atop an
 		impossible precipice. The Castle of the Pixel Monkey.
 		
 		Your mind races with thoughts of ... 
