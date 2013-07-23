@@ -1,6 +1,19 @@
 /*
  *	TristanBrehaut.com AKA Pixel Monkey.
- 
+
+	------------------------------------------------------------------------------------------------------------------------------ 
+	
+	(                         *                                   
+	 )\ )               (    (  `                   )              
+	(()/( (      )   (  )\   )\))(               ( /(    (   (     
+	 /(_)))\  ( /(  ))\((_) ((_)()\   (    (     )\())  ))\  )\ )  
+	(_)) ((_) )\())/((_)_   (_()((_)  )\   )\ ) ((_)\  /((_)(()/(  
+	| _ \ (_)((_)\(_)) | |  |  \/  | ((_) _(_/( | |(_)(_))   )(_)) 
+	|  _/ | |\ \ // -_)| |  | |\/| |/ _ \| ' \))| / / / -_) | || | 
+	|_|   |_|/_\_\\___||_|  |_|  |_|\___/|_||_| |_\_\ \___|  \_, | 
+															 |__/  
+
+	------------------------------------------------------------------------------------------------------------------------------
  
 	The story so far...
  
@@ -36,7 +49,8 @@ var crumbs = [],				// A bag of golden crumbs, because even the most experienced
 	fxSlow = 300,				// A slow effect modifier (Ice).
 	page = 1,					// A map of your current environment.
 	xhr = null,					// An soul gem shaped like a tiny bust of Tim Burners-Lee. The gem is old-school CRT green and is currently empty.
-	mobile = false;				// You may or may not be carrying a mobile phone too, for now we'll assume your not.
+	mobile = false,				// You may or may not be carrying a mobile phone too, for now we'll assume your not.
+	codebox = false;
 
 	
 /*
@@ -57,7 +71,7 @@ var crumbs = [],				// A bag of golden crumbs, because even the most experienced
 		to help you gain entrance to whatever lies beyond. On the back of the map, written in what appears to be troll blood, is a single symbol.
 		Scanning the exterior of entranceway you find the same symbol, it's worn but recognisable.  You approach the magic seal and ...
 		( c? K: "jam the magic blade of CSS3 into a small crack next to it and apply pressure."; W: "consult your ancient tome of all knowing.  Discovering
-		the symbol you speak the ancient word."; P:"analyse the magic field for weaknesses.  You identify a undifined variable and give it a true value."; )
+		the symbol you speak the ancient word."; P:"analyse the magic field for weaknesses.  You identify a undefined variable and give it a true value."; )
 		
 		There is a deep rumble from behind the stone door.  A crunch, a click, a whirr.  Dust and debris begins to fall from around the ancient entranceway.
 		Moments later the worn gate slides away to reveal a passageway behind.  The passageway is dark but appears to be dimly light by the magic field
@@ -117,8 +131,10 @@ $(document).ready(function(){
 	}).on('mouseleave', '.photolink, .lightbox', function(){
 		$(this).children('.seemore').stop().fadeOut();
 	}).on('mouseover', '#slide, #metadata', function(){
+		if(codebox) return;
 		$('#metadata').stop().animate({ 'opacity': 1 }, fxSlow);
 	}).on('mouseout', '#slide, #metadata', function(){
+		if(codebox) return;
 		$('#metadata').stop().animate({ 'opacity': 0 }, fxSlow);
 	});
 	
@@ -142,7 +158,7 @@ $(document).ready(function(){
 			loadSlide("prev");
 		}
 	}).on('click', '#cinemaView', function(e){
-		console.log(e);
+		//console.log(e);
 		if(e.target.id === "slide" || e.target.id === "metadata" || e.target.className.match(/(next|prev)/)){
 			return false;
 		}
@@ -160,7 +176,7 @@ $(document).ready(function(){
 					closeCinemaView();
 					break;
 				default:
-					console.log(e.which);
+					//console.log(e.which);
 			}
 		}
 	}).on('click', '#lightbox .next', function(){
@@ -200,8 +216,8 @@ function getPage(url, direction){
 	
 	if(url === 'undefined') return false;
 	
-	var hide = direction ? 'down' : 'up',
-		show = direction ? 'up' : 'down',
+	var hide = direction ? 'right' : 'left',
+		show = direction ? 'left' : 'right',
 		cinemaViewHTML = '<div id="cinemaView" class="loading"></div>';
 	
 	if(xhr !== null){
@@ -267,8 +283,8 @@ function loadSlide(target){
 	$('.current').removeClass('current');
 	$(el).addClass('current');
 	
-	var codebox = (el.href.match(/.html/ig) || []).length === 1,
-		cinemaViewHTML = codebox ? '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><iframe id="slide" frameborder="0" scrolling="no"></iframe><div id="metadata"></div><span class="next">&nbsp;</span></div></div>' : '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><img id="slide"/><div id="metadata"></div><span class="next">&nbsp;</span></div></div>';
+	codebox = (el.href.match(/.html/ig) || []).length === 1;
+	var	cinemaViewHTML = codebox ? '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><iframe id="slide" frameborder="0" scrolling="no"></iframe><div id="metadata"></div><span class="next">&nbsp;</span></div></div>' : '<div id="cinemaView"><div id="lightbox"><span class="prev">&nbsp;</span><img id="slide"/><div id="metadata"></div><span class="next">&nbsp;</span></div></div>';
 	
 	if($('#cinemaView').length < 1){
 		$('body').append(cinemaViewHTML);
@@ -283,8 +299,10 @@ function loadSlide(target){
 	$('#lightbox').animate({'left': offsetLeft}, fxSlow, function(){
 		$('#cinemaView').addClass('loading');
 		
-		$('#metadata').html('<p>Loading...</p>');
-		flickrEXIFData(id,secret);
+		if(!codebox) {
+			$('#metadata').html('<p>Loading...</p>');
+			flickrEXIFData(id,secret);
+		}
 		
 		$(this).css({'left': first ? offsetLeft : -offsetLeft});
 		$('#slide').attr('src', el.href).on('load', function(e){
@@ -317,7 +335,7 @@ function closeCinemaView(){
 	$.fn.center = function(){
 		this.css({
 			top: (($(window).height() - this.height()) / 2),
-			left: (($(window).width() - this.width()) / 2)
+			left: (($(window).width() - this.width()) / 2) + 80
 		});
 		return this;
 	};
